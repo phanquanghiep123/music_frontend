@@ -63,10 +63,11 @@ export class DownloadComponent implements OnInit {
     this.track.download = true;
     this.dataURItoBlob(Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '', function (file) {
       var atobARG = file.split(',');
+      var atob = atobARG[1].trim().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
       try {
-        var binary = atob(atobARG[1]);
+        var binary = atob(atob);
       } catch (error) {
-        console.log(atobARG[1]);
+        console.log(error);
       }
      
       var array = [];
@@ -91,6 +92,9 @@ export class DownloadComponent implements OnInit {
       }
       link.parentNode.removeChild(link);
       _this.track.download = false;
+      setTimeout(function() {
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
     },$track);
    
   }
@@ -102,7 +106,6 @@ export class DownloadComponent implements OnInit {
   }
   dataURItoBlob(dataUrl, callback,track:Track) {
     var req = new XMLHttpRequest;
-    var _this = this;
     req.open('GET', dataUrl);
     req.onload = function fileLoaded(e) {
       callback(this.response);
