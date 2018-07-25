@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'FuturaDem';
+    src: url('FuturaDem.eot');
+    src: url('FuturaDem.eot') format('embedded-opentype'),
+         url('FuturaDem.woff2') format('woff2'),
+         url('FuturaDem.woff') format('woff'),
+         url('FuturaDem.ttf') format('truetype'),
+         url('FuturaDem.svg#FuturaDem') format('svg');
+}

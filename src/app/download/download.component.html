@@ -1,0 +1,32 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <div class="container">
+        <h2 class="download-title">This download would be availbale for another
+          <span class="time">{{hoursDownload}}</span> hours</h2>
+        <div class="list-tracks">
+          <div *ngFor="let item of tracks;let i = index ;" class="track">
+            <div class="row">
+              <div class="col-sm-6 col-md-8">
+                <div class="track-text">
+                  <div class="track-number">{{(i+1)}}.</div>
+                  <h4 class="track-title">{{item.name}}</h4>
+                  <div class="track-info">{{item.description}}
+                    <span class="hidden-sm hidden-md hidden-lg">/ 8.84MB</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 col-md-2">
+                <div class="track-size hidden-xs">{{formatBytes(item.size)}}</div>
+              </div>
+              <div class="col-sm-3 col-md-2">
+                <button (click)="downloadfile(item)" class="btn btn-download">Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+</div>
