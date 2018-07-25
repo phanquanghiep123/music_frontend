@@ -70,50 +70,15 @@ export class DownloadComponent implements OnInit {
     if (document.createEvent) {
     var event = document.createEvent('MouseEvents');
     event.initEvent('click', true, true);
-    link.dispatchEvent(event);
+      link.dispatchEvent(event);
     }
     // IE
     else if (link.click) {
-    link.click();
+      link.click();
     }
     link.parentNode.removeChild(link);
     _this.track.download = false;
-    /*this.dataURItoBlob(Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '', function (file) {
-      var atobARG = file.split(',');
-      var atobARG = atobARG[1].trim();
-      try {
-        var binary = atob(atobARG);
-      } catch (error) {
-        console.log(error);
-      }
-     
-      var array = [];
-      for (var i = 0; i < binary.length; i++) {
-        array.push(binary.charCodeAt(i));
-      }
-      var dataBit = new Blob([new Uint8Array(array)], { type: 'audio/' + $track.extension + '' });
-      var url = URL.createObjectURL(dataBit);
-      var link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', $track.name + '.' + $track.extension);
-      document.getElementsByTagName('body')[0].appendChild(link);
-      // Firefox
-      if (document.createEvent) {
-        var event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        link.dispatchEvent(event);
-      }
-      // IE
-      else if (link.click) {
-        link.click();
-      }
-      link.parentNode.removeChild(link);
-      _this.track.download = false;
-      setTimeout(function() {
-            window.URL.revokeObjectURL(url);  
-        }, 2000); 
-    },$track);*/
-   
+    
   }
   formatBytes(bytes) {
     if (bytes < 1024) return bytes + ' Bytes';
@@ -173,5 +138,11 @@ export class DownloadComponent implements OnInit {
         })
       }, 50);
     }
+  }
+  ngOnDestroy() {
+    try {
+      this.SoundSource.pause();
+      this.SoundSource.currentTime = 0;
+    } catch (error) {} 
   }
 }
