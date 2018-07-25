@@ -52,7 +52,9 @@ export class HomeComponent implements OnInit {
         this.tracks = this.artist.tracks;
         this.track = this.tracks[0];
       }
-      this.app.loading = false;
+      setTimeout(() => {
+        this.app.loading = false;
+      }, 500);
       this.app.showLogopayment = false;
     });
 

@@ -16,7 +16,7 @@ export class NotfoundComponent implements OnInit {
     this.titleService.setTitle('Oops | Remyx');
     setTimeout(() => {
       this.app.loading = false;
-    }, 200);
+    }, 500);
   }
 
 }

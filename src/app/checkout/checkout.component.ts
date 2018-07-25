@@ -48,7 +48,9 @@ export class CheckoutComponent implements OnInit {
         this.checkout.artist_id = this.artist.id;
         this.checkout.slug = this.artist.slug;
       }
-      this.app.loading = false;
+      setTimeout(() => {
+        this.app.loading = false;
+      }, 500);
       this.app.showLogopayment = true;
     });
   }

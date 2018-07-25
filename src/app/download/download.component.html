@@ -11,8 +11,11 @@
                 <div class="track-text">
                   <div class="track-number">{{(i+1)}}.</div>
                   <h4 class="track-title">{{item.name}}</h4>
-                  <div class="track-info">{{item.description}}
-                    <span class="hidden-sm hidden-md hidden-lg">/ 8.84MB</span>
+                  <div class="track-info">{{item.description}}</div>
+                  <div *ngIf="item.download" class="progress">
+                    <div id= "track-{{item.id}}" class="progress-bar" role="progressbar" aria-valuenow="70"aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                      <span class="sr-only">0% Complete</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -20,7 +23,8 @@
                 <div class="track-size hidden-xs">{{formatBytes(item.size)}}</div>
               </div>
               <div class="col-sm-3 col-md-2">
-                <button (click)="downloadfile(item)" class="btn btn-download">Download</button>
+                <button [ngClass]="(item.download) ? 'activer' : ''"  [disabled]="item.download" (click)="downloadfile(item)" class="btn btn-download">Download <i class="fa fa-cloud-download" aria-hidden="true"></i></button>
+                <button [ngClass]="(item.play) ? 'activer' : ''" class="btn btn-download" (click)="PlayTrack(item)">{{ (item.play) ? 'Stop'  :  'Play'}} <i class="fa {{ (item.play) ? 'fa-stop-circle'  :  'fa-play-circle-o'}}" aria-hidden="true"></i></button>
               </div>
             </div>
           </div>

@@ -76,15 +76,10 @@
     -webkit-transition: all 0.5s; /* Safari */
     transition: all 0.5s;
 }
-.app-loading.hide {
+.app-loading.onhidden {
+  top : 100%;
   opacity : 0;
-  -webkit-transition: all 0.5s; /* Safari */
-  transition: all 0.5s;
 }
-.app-loading.hide {
-    display: none;
-}
-
 .action .mdi {
     font-size: 20px;
     padding: 0 5px;
@@ -93,4 +88,9 @@
 .page-track .track-btns .btn.is_play{
     background: #00ffaf;
     border: none;
+}
+
+.page-download .progress{
+  height: 5px;
+  margin-top:5px;
 }

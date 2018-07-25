@@ -23,6 +23,7 @@ export class DownloadComponent implements OnInit {
   tracks: Track[];
   hoursDownload = 0;
   download: Download;
+  SoundSource = new Audio();
   constructor(
     private titleService: Title,
     private app: AppComponent,
@@ -58,9 +59,16 @@ export class DownloadComponent implements OnInit {
   }
   downloadfile($track: Track) {
     var _this = this;
-    _this.app.loading = true;
+    this.track = $track;
+    this.track.download = true;
     this.dataURItoBlob(Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '', function (file) {
-      var binary = atob(file.split(',')[1]);
+      var atobARG = file.split(',');
+      try {
+        var binary = atob(atobARG[1]);
+      } catch (error) {
+        console.log(atobARG[1]);
+      }
+     
       var array = [];
       for (var i = 0; i < binary.length; i++) {
         array.push(binary.charCodeAt(i));
@@ -82,8 +90,9 @@ export class DownloadComponent implements OnInit {
         link.click();
       }
       link.parentNode.removeChild(link);
-      _this.app.loading = false;
-    });
+      _this.track.download = false;
+    },$track);
+   
   }
   formatBytes(bytes) {
     if (bytes < 1024) return bytes + ' Bytes';
@@ -91,23 +100,58 @@ export class DownloadComponent implements OnInit {
     else if (bytes < 1073741824) return (bytes / 1048576).toFixed(3) + ' MB';
     else return (bytes / 1073741824).toFixed(3) + ' GB';
   }
-  dataURItoBlob(dataUrl, callback) {
+  dataURItoBlob(dataUrl, callback,track:Track) {
     var req = new XMLHttpRequest;
     var _this = this;
     req.open('GET', dataUrl);
     req.onload = function fileLoaded(e) {
       callback(this.response);
     };
+    req.onprogress = function (event) {
+      var percentComplete = (event.loaded / event.total) * 100;  
+      if(percentComplete >= 100){
+        $('#track-'+track.id).css({
+          'background-color': '#20a510',
+          'width' :  '100%' 
+        });
+        $('#track-' + track.id + ' .sr-only').text('Complete 100' +  + '%');
+        setTimeout(() => {
+          $('#track-'+track.id).css({
+            'background-color': '#337ab7',
+            'width' : '0%' 
+          });
+          $('#track-' + track.id + ' .sr-only').text('Complete 0' +  + '%');
+        }, 500);
+
+      }else{
+        $('#track-'+track.id).css({width : percentComplete + '%'});
+        $('#track-' + track.id + ' .sr-only').text('Complete ' + percentComplete + '%');
+      }
+      
+    };
     try {
       req.send();
     } catch (err) {
-      _this.app.loading = false;
     }
-
   }
-
-
-
-
-
+  PlayTrack(track) {
+    if(this.track && this.track.id != track.id){
+      this.track.play = false;
+    }
+    this.track = track;
+    if (this.track.play) {
+      this.SoundSource.pause();
+      this.track.play = false;
+    }
+    else {
+      this.SoundSource.src = this.service.public_url + this.track.path;
+      setTimeout(() => {
+        this.SoundSource.play();
+        this.track.play = true;
+        this.SoundSource.onended = (() => {
+          this.track.play = false;
+        })
+      }, 50);
+    }
+  }
 }

@@ -20,5 +20,6 @@ export class Track {
     public_thumb: any = '';
     public_path: any = '';
     extension: string = '';
-   
+    size : any;
+    download : boolean = false;
 }

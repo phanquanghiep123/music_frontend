@@ -23,7 +23,7 @@ export class PrivacyPolicyComponent implements OnInit {
     this.titleService.setTitle('Privacy policy | Remyx');
     setTimeout(() => {
       this.app.loading = false;
-    }, 200);
+    }, 500);
   }
 
 }

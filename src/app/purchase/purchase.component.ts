@@ -49,7 +49,9 @@ export class PurchaseComponent implements OnInit {
         this.checkout.status = 1;
         this.checkout.set();
       }
-      this.app.loading = false;
+      setTimeout(() => {
+        this.app.loading = false;
+      }, 500);
       this.app.showLogopayment = true;
     });
   }

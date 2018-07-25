@@ -216,7 +216,15 @@ h5, .h5{font-size: 16px;}
 .page-download .track .track-text .track-title{margin: 0 0 5px; line-height: 1;font-size: 22px;}
 .page-download .track .track-text .track-info{font-weight: 700; color: #a8a8a8}
 .page-download .track .track-size{font-weight: 600; color: #a8a8a8; height: 32px; line-height: 32px;}
-.page-download .track .btn-download{border-radius: 0; color: #fff; background-color: #000; border-color: #000; height: 32px; line-height: 28px;}
+.page-download .track .btn-download{border-radius: 0; color: #fff; background-color: #000; border-color: #000; height: 32px; line-height: 28px; width : 150px; margin-bottom:5px}
+.page-download .track .btn-download:hover{
+	background-color: #fff;
+	color: #000; 
+}
+.page-download .track .btn-download.activer{
+	background-color: #fff;
+	color: #000; 
+}
 @media(max-width:767px){
 	.page-download .download-title{padding-left: 60px;}
 	.page-download .track .btn-download{display: block; width: 100%; margin-top: 15px;}
