@@ -45,7 +45,7 @@ export class DownloadComponent implements OnInit {
           this.download = this.service.response.download;
           this.hoursDownload = this.download.diffTime;
         } else {
-          alert(this.service.messege);
+          alert(this.service.message);
           if (this.service.redirect) {
             this.router.navigate([this.service.response]);
           }
@@ -61,11 +61,28 @@ export class DownloadComponent implements OnInit {
     var _this = this;
     this.track = $track;
     this.track.download = true;
-    this.dataURItoBlob(Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '', function (file) {
+    var url = Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '';
+    var link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', $track.name + '.' + $track.extension);
+    document.getElementsByTagName('body')[0].appendChild(link);
+    // Firefox
+    if (document.createEvent) {
+    var event = document.createEvent('MouseEvents');
+    event.initEvent('click', true, true);
+    link.dispatchEvent(event);
+    }
+    // IE
+    else if (link.click) {
+    link.click();
+    }
+    link.parentNode.removeChild(link);
+    _this.track.download = false;
+    /*this.dataURItoBlob(Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '', function (file) {
       var atobARG = file.split(',');
-      var atob = atobARG[1].trim().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+      var atobARG = atobARG[1].trim();
       try {
-        var binary = atob(atob);
+        var binary = atob(atobARG);
       } catch (error) {
         console.log(error);
       }
@@ -94,8 +111,8 @@ export class DownloadComponent implements OnInit {
       _this.track.download = false;
       setTimeout(function() {
             window.URL.revokeObjectURL(url);  
-        }, 0); 
-    },$track);
+        }, 2000); 
+    },$track);*/
    
   }
   formatBytes(bytes) {
