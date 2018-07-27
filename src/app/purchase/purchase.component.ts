@@ -66,9 +66,9 @@ export class PurchaseComponent implements OnInit {
           }
         }else
         {
-          alert(this.service.messege);
+          alert(this.service.message);
         }
-        this.app.loading = false;
+        //this.app.loading = false;
       },
       error => {
         this.app.loading = false;

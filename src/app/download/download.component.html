@@ -3,7 +3,7 @@
     <main id="main" class="site-main" role="main">
       <div class="container">
         <h2 class="download-title">This download would be availbale for another
-          <span class="time">{{hoursDownload}}</span> hours</h2>
+          <span class="time">{{hours < 10 ? '0' + hours : hours }}:{{munites < 10 ? '0' + munites : munites}}:{{seconds < 10 ? '0' + seconds :  seconds}}</span> hours</h2>
         <div class="list-tracks">
           <div *ngFor="let item of tracks;let i = index ;" class="track">
             <div class="row">
@@ -27,10 +27,10 @@
                 <button [ngClass]="(item.play) ? 'activer' : ''" class="btn btn-download" (click)="PlayTrack(item)">{{ (item.play) ? 'Stop'  :  'Play'}} <i class="fa {{ (item.play) ? 'fa-stop-circle'  :  'fa-play-circle-o'}}" aria-hidden="true"></i></button>
               </div>
             </div>
+            <hr/>
           </div>
         </div>
       </div>
     </main>
-
   </div>
 </div>

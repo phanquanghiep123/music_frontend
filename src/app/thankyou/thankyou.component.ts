@@ -50,7 +50,7 @@ export class ThankyouComponent implements OnInit {
               } 
             },1000); 
           } else {
-            alert(this.service.messege);
+            alert(this.service.message);
             this.router.navigate(['/']);
           }
           this.app.loading = false;

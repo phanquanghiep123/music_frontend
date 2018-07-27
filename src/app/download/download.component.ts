@@ -21,8 +21,11 @@ export class DownloadComponent implements OnInit {
   artist: Artist;
   track: Track;
   tracks: Track[];
-  hoursDownload = 0;
+  hoursDownload : string = '0';
   download: Download;
+  hours = 0;
+  munites = 0;
+  seconds = 0;
   SoundSource = new Audio();
   constructor(
     private titleService: Title,
@@ -32,6 +35,9 @@ export class DownloadComponent implements OnInit {
     private router: Router
   ) {
     this.app.loading = true;
+    this.SoundSource.onended = (() => {
+        this.track.play = false
+    })
   }
   ngOnInit() {
     $('body').attr('class','page-download');
@@ -44,13 +50,34 @@ export class DownloadComponent implements OnInit {
           this.tracks = this.service.response.tracks;
           this.download = this.service.response.download;
           this.hoursDownload = this.download.diffTime;
+          var argHour = this.hoursDownload.split(':');
+          this.hours    = parseInt(argHour[0]);
+          this.munites  = parseInt(argHour[1]);
+          this.seconds  = parseInt(argHour[2]);
+          var countdown = setInterval(() => {
+            if(this.seconds > 0){
+              this.seconds--;
+            }else{
+              this.seconds = 59;
+              if(this.munites > 0){
+                this.munites--;
+              }else{
+                this.munites = 59;
+                if(this.hours > 0){
+                  this.hours--;
+                }else{
+                  clearInterval(countdown);
+                } 
+              }
+            }
+          },1000);
         } else {
           alert(this.service.message);
           if (this.service.redirect) {
             this.router.navigate([this.service.response]);
           }
         }
-        this.app.loading = false;
+        setTimeout (()=>{this.app.loading = false;},500);
       },
       error => {
         this.app.loading = false;
@@ -58,10 +85,9 @@ export class DownloadComponent implements OnInit {
     );
   }
   downloadfile($track: Track) {
-    var _this = this;
     this.track = $track;
     this.track.download = true;
-    var url = Config.APIURL + 'downloads/file?public_key=' + _this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '';
+    var url = Config.APIURL + 'downloads/file?public_key=' + this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '';
     var link = document.createElement('a');
     link.href = url;
     link.setAttribute('download', $track.name + '.' + $track.extension);
@@ -77,7 +103,7 @@ export class DownloadComponent implements OnInit {
       link.click();
     }
     link.parentNode.removeChild(link);
-    _this.track.download = false;
+    this.track.download = false;
     
   }
   formatBytes(bytes) {
@@ -85,39 +111,6 @@ export class DownloadComponent implements OnInit {
     else if (bytes < 1048576) return (bytes / 1024).toFixed(3) + ' KB';
     else if (bytes < 1073741824) return (bytes / 1048576).toFixed(3) + ' MB';
     else return (bytes / 1073741824).toFixed(3) + ' GB';
-  }
-  dataURItoBlob(dataUrl, callback,track:Track) {
-    var req = new XMLHttpRequest;
-    req.open('GET', dataUrl);
-    req.onload = function fileLoaded(e) {
-      callback(this.response);
-    };
-    req.onprogress = function (event) {
-      var percentComplete = (event.loaded / event.total) * 100;  
-      if(percentComplete >= 100){
-        $('#track-'+track.id).css({
-          'background-color': '#20a510',
-          'width' :  '100%' 
-        });
-        $('#track-' + track.id + ' .sr-only').text('Complete 100' +  + '%');
-        setTimeout(() => {
-          $('#track-'+track.id).css({
-            'background-color': '#337ab7',
-            'width' : '0%' 
-          });
-          $('#track-' + track.id + ' .sr-only').text('Complete 0' +  + '%');
-        }, 500);
-
-      }else{
-        $('#track-'+track.id).css({width : percentComplete + '%'});
-        $('#track-' + track.id + ' .sr-only').text('Complete ' + percentComplete + '%');
-      }
-      
-    };
-    try {
-      req.send();
-    } catch (err) {
-    }
   }
   PlayTrack(track) {
     if(this.track && this.track.id != track.id){

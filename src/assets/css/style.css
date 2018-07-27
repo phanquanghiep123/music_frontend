@@ -209,14 +209,14 @@ h5, .h5{font-size: 16px;}
 .page-download .site-header .logo{background-image: url(../images/logo-white-black.png); background-color: #000;}
 .page-download .download-title{font-size: 18px; color: #a8a8a8; text-align: center; font-weight: 500;}
 .page-download .download-title span{color: #000; font-weight: 700;}
-.page-download .list-tracks{margin: 50px auto 0; max-width: 800px;}
+.page-download .list-tracks{margin: 50px auto 0; }
 .page-download .track{margin-bottom: 30px;font-family: 'FuturaDem', sans-serif; font-size: 16px;}
 .page-download .track .track-text{position: relative; padding-left: 48px; line-height: 1;}
 .page-download .track .track-text .track-number{font-weight: 700; font-size: 44px; position: absolute; left: 0; top: 0; width: 48px;}
 .page-download .track .track-text .track-title{margin: 0 0 5px; line-height: 1;font-size: 22px;}
 .page-download .track .track-text .track-info{font-weight: 700; color: #a8a8a8}
 .page-download .track .track-size{font-weight: 600; color: #a8a8a8; height: 32px; line-height: 32px;}
-.page-download .track .btn-download{border-radius: 0; color: #fff; background-color: #000; border-color: #000; height: 32px; line-height: 28px; width : 150px; margin-bottom:5px}
+.page-download .track .btn-download{border-radius: 0;color: #fff;background-color: #000;border-color: #000;height: 32px;line-height: 28px;width: 100%;margin-bottom:5px;}
 .page-download .track .btn-download:hover{
 	background-color: #fff;
 	color: #000; 

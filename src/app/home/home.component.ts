@@ -21,26 +21,23 @@ export class HomeComponent implements OnInit {
   @ViewChild('audioPlay') audioPlay: ElementRef;
   constructor(private titleService: Title, private artistService: ArtistService, private app: AppComponent) {
     this.app.loading = true;
-    var _this = this;
-    this.SoundSource.onended = function(){
-      {
-        _this.indexTrack++;
-        if(typeof _this.tracks[_this.indexTrack] !== 'undefined'){
-          _this.track = _this.tracks[_this.indexTrack];
+    this.SoundSource.onended =(() => {
+      this.indexTrack++;
+        if(typeof this.tracks[this.indexTrack] !== 'undefined'){
+          this.track = this.tracks[this.indexTrack];
         }else{
-          _this.indexTrack = 0;
-          _this.track = _this.tracks[_this.indexTrack];
+          this.indexTrack = 0;
+          this.track = this.tracks[this.indexTrack];
         }
         setTimeout(() => {
-          _this.SoundSource.pause();
-          _this.SoundSource.currentTime = 0;
-          _this.SoundSource.src = _this.service.public_url + _this.track.path;
+          this.SoundSource.pause();
+          this.SoundSource.currentTime = 0;
+          this.SoundSource.src = this.service.public_url + this.track.path;
           setTimeout(() => {
-            _this.SoundSource.play();
+            this.SoundSource.play();
           }, 50);
         }, 50);
-      }
-    }
+    });  
   }
   ngOnInit() {
     $('body').attr('class', 'page-track');
