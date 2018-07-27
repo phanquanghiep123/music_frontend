@@ -23,6 +23,7 @@ import { Download } from './models/download';
 import { Login } from './models/login';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CancelComponent } from './cancel/cancel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     DownloadComponent,
     ThankyouComponent,
     PrivacyPolicyComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CancelComponent
   ],
   imports: [
     BrowserModule,
