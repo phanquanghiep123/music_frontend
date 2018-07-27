@@ -38,6 +38,11 @@
         </p>
       </div>
     </main>
-
+    <div class="none">
+      <form id="formCcavenue" method="POST" name="redirect" action="{{checkout.action}}">
+        <input type=hidden name=encRequest value={{checkout.encrypted_data}}>
+        <input type=hidden name=access_code value={{checkout.access_code}}> 
+      </form>
+    </div>
   </div>
 </div>

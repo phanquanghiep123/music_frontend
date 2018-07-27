@@ -15,6 +15,8 @@ export class Checkout {
     success_url: string = Config.BASEURL + '/thanks';
     created_at: string = null;
     updated_at: string = null;
+    encrypted_data : string = "";
+    access_code : string = "";
     constructor() {
         var key = "";
         for (let i in this) {

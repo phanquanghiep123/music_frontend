@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistService } from '../services/artist.service';
@@ -21,6 +21,7 @@ export class PurchaseComponent implements OnInit {
   checkout: Checkout;
   service: Service;
   checkoutInfo = {};
+  @ViewChild('formCcavenue') formCcavenue: ElementRef;
   constructor(
     private titleService: Title,
     private route: Router,
@@ -62,7 +63,14 @@ export class PurchaseComponent implements OnInit {
         this.service = data;
         if(this.service.status){
           if(this.service.redirect){
-            window.location.href = this.service.response;
+            if(this.checkout.payment_option == "paypal")
+              window.location.href = this.service.response;
+              else if(this.checkout.payment_option == "ccavenue"){
+                this.checkout = this.service.response;
+                setTimeout(()=>{
+                  $("#formCcavenue").submit();
+                },500);
+              }
           }
         }else
         {
