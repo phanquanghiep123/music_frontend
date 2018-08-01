@@ -26,7 +26,6 @@ export class ThankyouComponent implements OnInit {
     private downloadService: DownloadService,
     private auth : Auth
   ) {
-    this.app.loading = true;
   }
   ngOnInit() { 
     $('body').attr('class', 'page-message page-success');
@@ -40,7 +39,7 @@ export class ThankyouComponent implements OnInit {
           this.service = data;
           if(this.service.status){
             this.checkout.destroy();
-            this.app.loading = false;   
+            this.app.hiddenLoading();
             var down = setInterval(()=> {
               if(this.coundown > 0)
                 this.coundown--;
@@ -53,15 +52,18 @@ export class ThankyouComponent implements OnInit {
             alert(this.service.message);
             this.router.navigate(['/']);
           }
-          this.app.loading = false;
+          this.app.hiddenLoading();
         },
         error => {
-          this.app.loading = false;
+          this.app.hiddenLoading();
         }
       )
     } else {
       this.router.navigate['/'];
     }
+  }
+  ngOnDestroy() {
+    this.app.showLoading();
   }
 
 }

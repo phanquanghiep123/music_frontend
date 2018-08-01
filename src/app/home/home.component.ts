@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   SoundSource = new Audio();
   @ViewChild('audioPlay') audioPlay: ElementRef;
   constructor(private titleService: Title, private artistService: ArtistService, private app: AppComponent) {
-    this.app.loading = true;
     this.SoundSource.onended =(() => {
       this.indexTrack++;
         if(typeof this.tracks[this.indexTrack] !== 'undefined'){
@@ -50,7 +49,7 @@ export class HomeComponent implements OnInit {
         this.track = this.tracks[0];
       }
       setTimeout(() => {
-        this.app.loading = false;
+        this.app.hiddenLoading();
       }, 500);
       this.app.showLogopayment = false;
     });
@@ -82,6 +81,7 @@ export class HomeComponent implements OnInit {
       this.SoundSource.pause();
       this.SoundSource.currentTime = 0;
     } catch (error) {} 
+    this.app.showLoading();
   }
 
 }

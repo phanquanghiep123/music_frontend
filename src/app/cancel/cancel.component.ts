@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-cancel',
   templateUrl: './cancel.component.html',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CancelComponent implements OnInit {
 
-  constructor() { }
+  constructor(private app : AppComponent) { }
 
   ngOnInit() {
   }
-
+  ngOnDestroy() {
+    this.app.showLoading();
+  }
 }

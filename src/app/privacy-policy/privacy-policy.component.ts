@@ -16,15 +16,16 @@ export class PrivacyPolicyComponent implements OnInit {
     private titleService: Title,
     private app: AppComponent,
   ) {
-    this.app.loading = true;
   }
   ngOnInit() { 
     $('body').attr('class', 'page-message page-success');
     this.titleService.setTitle('Privacy policy | Remyx');
     setTimeout(() => {
-      this.app.loading = false;
+      this.app.showLoading()
     }, 500);
   }
-
+  ngOnDestroy() {
+    this.app.showLoading();
+  }
 }
 

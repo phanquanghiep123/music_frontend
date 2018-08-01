@@ -47,7 +47,7 @@ import { CancelComponent } from './cancel/cancel.component';
     HttpModule,
     FormsModule
   ],
-  providers: [HttpClient,Auth,Service,Checkout,Artist,Track,Download,Login],
+  providers: [HttpClient,Auth,Service,Checkout,Artist,Track,Download,Login,LoadingComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -33,7 +33,6 @@ export class PurchaseComponent implements OnInit {
     if (this.checkout.id == null || this.checkout.id < 1) {
       this.route.navigate(['/']);
     }
-    this.app.loading = true;
   }
   ngOnInit() {
     $('body').attr('class', 'page-confirm');
@@ -51,13 +50,13 @@ export class PurchaseComponent implements OnInit {
         this.checkout.set();
       }
       setTimeout(() => {
-        this.app.loading = false;
+        this.app.hiddenLoading();
       }, 500);
       this.app.showLogopayment = true;
     });
   }
   OnConfirm() {
-    this.app.loading = true;
+    this.app.showLoading();
     this.paymentService.purchase(this.checkout).subscribe(
       data => {
         this.service = data;
@@ -79,8 +78,10 @@ export class PurchaseComponent implements OnInit {
         //this.app.loading = false;
       },
       error => {
-        this.app.loading = false;
+        this.app.hiddenLoading();
       })
   }
-
+  ngOnDestroy() {
+    this.app.showLoading();
+  }
 }

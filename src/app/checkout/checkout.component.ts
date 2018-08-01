@@ -29,7 +29,6 @@ export class CheckoutComponent implements OnInit {
     private app: AppComponent,
     private paymentService: PaymentService
   ) {
-    this.app.loading = true;
   }
   ngOnInit() {
     this.checkout = new Checkout();
@@ -49,7 +48,7 @@ export class CheckoutComponent implements OnInit {
         this.checkout.slug = this.artist.slug;
       }
       setTimeout(() => {
-        this.app.loading = false;
+        this.app.hiddenLoading();
       }, 500);
       this.app.showLogopayment = true;
     });
@@ -60,7 +59,7 @@ export class CheckoutComponent implements OnInit {
       window.scrollTo(0, 0);
       return false;
     }
-    this.app.loading = true;
+    this.app.showLoading();
     this.paymentService.checkout(this.checkout).subscribe(
       data => {
         this.service = data;
@@ -71,13 +70,15 @@ export class CheckoutComponent implements OnInit {
           this.checkout.set();
           this.route.navigate(['/purchase']);
         }
-        this.app.loading = false;
+        this.app.hiddenLoading();
       },
       error => {
-        this.app.loading = false;
+        this.app.hiddenLoading();
       }
     )
     
   }
-
+  ngOnDestroy() {
+    this.app.showLoading();
+  }
 }

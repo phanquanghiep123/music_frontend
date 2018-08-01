@@ -34,7 +34,7 @@ export class DownloadComponent implements OnInit {
     private auth: Auth,
     private router: Router
   ) {
-    this.app.loading = true;
+    this.app.showLoading();
     this.SoundSource.onended = (() => {
         this.track.play = false
     })
@@ -77,10 +77,10 @@ export class DownloadComponent implements OnInit {
             this.router.navigate([this.service.response]);
           }
         }
-        setTimeout (()=>{this.app.loading = false;},500);
+        setTimeout (()=>{this.app.hiddenLoading();},500);
       },
       error => {
-        this.app.loading = false;
+        this.app.hiddenLoading();
       }
     );
   }
@@ -132,10 +132,11 @@ export class DownloadComponent implements OnInit {
       }, 50);
     }
   }
-  ngOnDestroy() {
+  ngOnDestroy() { 
     try {
       this.SoundSource.pause();
       this.SoundSource.currentTime = 0;
     } catch (error) {} 
+    this.app.showLoading();
   }
 }

@@ -18,15 +18,16 @@ export class ContactUsComponent implements OnInit {
     private titleService: Title,
     private app: AppComponent,
   ) {
-    this.app.loading = true;
   }
   ngOnInit() { 
     $('body').attr('class', 'page-message page-success');
     this.titleService.setTitle('Privacy policy | Remyx');
     setTimeout(() => {
-      this.app.loading = false;
-    }, 500);
+      this.app.hiddenLoading();
+    },500)
   }
-
+  ngOnDestroy() {
+    this.app.showLoading();
+  }
 }
 
