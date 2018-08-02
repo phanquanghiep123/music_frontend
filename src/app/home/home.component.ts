@@ -17,26 +17,28 @@ export class HomeComponent implements OnInit {
   tracks: Track[];
   track: Track;
   indexTrack = 0;
+  loadding = false;
   SoundSource = new Audio();
   @ViewChild('audioPlay') audioPlay: ElementRef;
   constructor(private titleService: Title, private artistService: ArtistService, private app: AppComponent) {
-    this.SoundSource.onended =(() => {
+    this.app.loading = false;
+    this.SoundSource.onended = (() => {
       this.indexTrack++;
-        if(typeof this.tracks[this.indexTrack] !== 'undefined'){
-          this.track = this.tracks[this.indexTrack];
-        }else{
-          this.indexTrack = 0;
-          this.track = this.tracks[this.indexTrack];
-        }
+      if (typeof this.tracks[this.indexTrack] !== 'undefined') {
+        this.track = this.tracks[this.indexTrack];
+      } else {
+        this.indexTrack = 0;
+        this.track = this.tracks[this.indexTrack];
+      }
+      setTimeout(() => {
+        this.SoundSource.pause();
+        this.SoundSource.currentTime = 0;
+        this.SoundSource.src = this.service.public_url + this.track.path;
         setTimeout(() => {
-          this.SoundSource.pause();
-          this.SoundSource.currentTime = 0;
-          this.SoundSource.src = this.service.public_url + this.track.path;
-          setTimeout(() => {
-            this.SoundSource.play();
-          }, 50);
+          this.SoundSource.play();
         }, 50);
-    });  
+      }, 50);
+    });
   }
   ngOnInit() {
     $('body').attr('class', 'page-track');
@@ -48,9 +50,14 @@ export class HomeComponent implements OnInit {
         this.tracks = this.artist.tracks;
         this.track = this.tracks[0];
       }
-      setTimeout(() => {
-        this.app.hiddenLoading();
-      }, 500);
+      $(".home-loading").removeClass("open-loading");
+      setTimeout(function () {
+        $(".home-loading").animate({ width: '74px' }, 500, function () {
+          $(this).animate({ height: '74px' }, 250, function () {
+            $("body").removeClass("open-loading");
+          });
+        });
+      }, 1000);
       this.app.showLogopayment = false;
     });
 
@@ -61,9 +68,9 @@ export class HomeComponent implements OnInit {
       this.artist.play = false;
     }
     else {
-      if(typeof this.tracks[this.indexTrack] !== 'undefined'){
+      if (typeof this.tracks[this.indexTrack] !== 'undefined') {
         this.track = this.tracks[this.indexTrack];
-      }else{
+      } else {
         this.indexTrack = 0;
         this.track = this.tracks[this.indexTrack];
       }
@@ -75,12 +82,32 @@ export class HomeComponent implements OnInit {
     }
 
   }
-
+  hiddenLoadding() {
+    this.loadding = false;
+    $("body").addClass("open-loading");
+    $(".home-loading").removeClass("open-loading");
+    setTimeout(function () {
+      $(".home-loading").animate({ width: '74px' }, 500, function () {
+        $(this).animate({ height: '74px' }, 250, function () {
+        });
+      });
+    },1000)
+  }
+  showLoadding() {
+    this.loadding = true;
+    $("body").addClass("open-loading");
+    $(".home-loading").animate({ height: '100%' }, 250, function () {
+      $(this).animate({ width: '100%' }, 500, function () {
+        $(".home-loading").addClass("open-loading"); 
+      });
+    });
+  }
   ngOnDestroy() {
     try {
       this.SoundSource.pause();
       this.SoundSource.currentTime = 0;
-    } catch (error) {} 
+    } catch (error) { }
+    this.app.loading = true;
     this.app.showLoading();
   }
 

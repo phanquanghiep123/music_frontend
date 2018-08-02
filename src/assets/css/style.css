@@ -9,10 +9,10 @@ secondary: #a9a2ff
 /*============================*/
 /*GLOBAL*/
 /*============================*/
-@import url('../fonts/FuturaDem.css');
+@import url('../fonts/Futura-Dem/stylesheet.css');
 body{color: #000;}
-strong{font-family: 'FuturaDem', sans-serif;}
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{font-weight: 700;font-family: 'FuturaDem', sans-serif; }
+strong{font-family: 'Futura-Dem', sans-serif;}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{font-weight: 700;font-family: 'Futura-Dem', sans-serif; }
 h2{font-size: 28px; line-height: 1;}
 h5, .h5{font-size: 16px;}
 
@@ -21,7 +21,7 @@ h5, .h5{font-size: 16px;}
 }
 
 /*BUTTONS*/
-.btn{border-width: 2px; font-weight:  700; text-transform: uppercase; font-size: 16px; border-radius: 24px; padding: 0 10px; height: 48px; line-height: 44px;font-family: 'FuturaDem', sans-serif;}
+.btn{border-width: 2px; font-weight:  700; text-transform: uppercase; font-size: 16px; border-radius: 24px; padding: 0 10px; height: 48px; line-height: 44px;font-family: 'Futura-Dem', sans-serif;}
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus{outline: 0; outline-offset: 0;}
 .btn .rmicon {font-size: 32px; vertical-align: middle;margin-right: 2px;position: relative;top: -2px;}
 .btn-default{color: #000; background-color: #fff; border-color: #000;}
@@ -68,14 +68,14 @@ h5, .h5{font-size: 16px;}
 	.btn{font-size: 17px;}
 }
 /*FORM*/
-.form-control{font-family: 'FuturaDem', sans-serif;  border:0; border-bottom: 2px solid #a8a8a8; border-radius: 0;
+.form-control{font-family: 'Futura-Dem', sans-serif;  border:0; border-bottom: 2px solid #a8a8a8; border-radius: 0;
 	-webkit-box-shadow: none; box-shadow: none; color: #1300fc; font-weight: 500;font-size: 18px; position: relative; z-index: 2;
 	background-color: transparent; padding-bottom: 0; padding-top: 0; height: auto;
 }
 .form-control:focus{border-color: #1300fc; -webkit-box-shadow: none; box-shadow: none;}
 .form-group{margin-bottom: 10px;}
 .form-group.form-group-js{padding-top: 15px; position: relative;}
-.form-group.form-group-js .text-holder{font-family: 'FuturaDem', sans-serif; color: #a8a8a8; font-size: 16px; font-weight: 500; position: absolute;  bottom: 3px; left: 12px; z-index: 1;}
+.form-group.form-group-js .text-holder{font-family: 'Futura-Dem', sans-serif; color: #a8a8a8; font-size: 16px; font-weight: 500; position: absolute;  bottom: 3px; left: 12px; z-index: 1;}
 .form-group.form-group-js.active .text-holder{font-size: 12px; bottom: 24px;}
 
 .form-group .text-help{color: #a8a8a8;}
@@ -85,7 +85,7 @@ h5, .h5{font-size: 16px;}
 .checkbox input[type="checkbox"]:focus + label::before{outline: 0; outline-offset: 0;}
 
 .radio{padding-left: 22px;}
-.radio label{font-weight: 500; font-size: 18px;font-family: 'FuturaDem', sans-serif;}
+.radio label{font-weight: 500; font-size: 18px;font-family: 'Futura-Dem', sans-serif;}
 .radio label::before{width: 22px; height: 22px; border: 2px solid #000; margin-left: -22px;}
 .radio label::after{background-color: #1300fc; width: 12px; height: 12px; top: 5px;}
 .radio input[type="radio"]:focus + label::before{outline: 0; outline-offset: 0;}
@@ -103,7 +103,7 @@ h5, .h5{font-size: 16px;}
 	.site-header .logo{width: 74px; height: 74px;}
 }
 
-.site-footer{text-align: center; font-family: 'FuturaDem', sans-serif;}
+.site-footer{text-align: center; font-family: 'Futura-Dem', sans-serif;}
 .site-footer ul{list-style: none; padding-left: 0; margin-left: 0;}
 .site-footer .list-secured li{display: inline-block;}
 .site-footer .list-secured .by-paypal{margin-right: 16px;}
@@ -210,7 +210,7 @@ h5, .h5{font-size: 16px;}
 .page-download .download-title{font-size: 18px; color: #a8a8a8; text-align: center; font-weight: 500;}
 .page-download .download-title span{color: #000; font-weight: 700;}
 .page-download .list-tracks{margin: 50px auto 0; }
-.page-download .track{margin-bottom: 30px;font-family: 'FuturaDem', sans-serif; font-size: 16px;}
+.page-download .track{margin-bottom: 30px;font-family: 'Futura-Dem', sans-serif; font-size: 16px;}
 .page-download .track .track-text{position: relative; padding-left: 48px; line-height: 1;}
 .page-download .track .track-text .track-number{font-weight: 700; font-size: 44px; position: absolute; left: 0; top: 0; width: 48px;}
 .page-download .track .track-text .track-title{margin: 0 0 5px; line-height: 1;font-size: 22px;}
@@ -239,7 +239,7 @@ h5, .h5{font-size: 16px;}
 .page-checkout .checkout-title small{display: block; text-transform: uppercase; font-size: 50%; margin-top: 5px;}
 .page-checkout .checkout-message{margin-bottom: 30px;}
 .page-checkout .form-checkout .group-heading{margin-bottom: 15px;}
-.page-checkout .form-checkout .group-heading span{font-family: 'FuturaDem', sans-serif;font-size: 18px; display: inline-block; border-bottom: 2px solid #000; font-weight: 700; }
+.page-checkout .form-checkout .group-heading span{font-family: 'Futura-Dem', sans-serif;font-size: 18px; display: inline-block; border-bottom: 2px solid #000; font-weight: 700; }
 .page-checkout .form-checkout .group-payment .group-heading{margin-top: 40px;margin-bottom: 25px;}
 .page-checkout .form-checkout .form-control[name="full_name"]{text-transform: uppercase;}
 .page-checkout .form-checkout .agree-holder{font-size: 13px; color: #a8a8a8; max-width: 400px; margin: 40px auto;}

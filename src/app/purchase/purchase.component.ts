@@ -62,14 +62,7 @@ export class PurchaseComponent implements OnInit {
         this.service = data;
         if(this.service.status){
           if(this.service.redirect){
-            if(this.checkout.payment_option == "paypal")
-              window.location.href = this.service.response;
-              else if(this.checkout.payment_option == "ccavenue"){
-                this.checkout = this.service.response;
-                setTimeout(()=>{
-                  $("#formCcavenue").submit();
-                },500);
-              }
+            window.location.href = this.service.response;
           }
         }else
         {

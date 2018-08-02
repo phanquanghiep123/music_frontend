@@ -6,20 +6,26 @@ declare var $: any;
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-  @Input() loading: boolean = true;
-  constructor() {
-
+  loading: boolean = true;
+  donwUp: 0;
+  constructor() { }
+  ngOnInit() {
   }
-  ngOnInit() { 
+  hiddenloadding() {
+    if (this.loading == true) {
+      setTimeout(() => {
+        this.loading = false;
+        $("#apploading").animate({ top: '100%' }, 250,function(){
+          $("body").removeClass("open-loading");
+        });
+      }, 1000);
+    }
   }
-  hiddenloadding () {
-    $("#apploading").animate({width:'74px'},500,function(){
-      $(this).animate({height:'74px'},250);
-    }); 
-  }
-  showloadding (){
-    $("#apploading").animate({height:'100%'},500,function(){
-      $(this).animate({width:'100%'},250);
-    });
+  showloadding() {
+    if (this.loading == false) {      
+      $("body").addClass("open-loading");
+      this.loading = true;
+      $("#apploading").animate({ top: '0' }, 250);
+    }
   }
 }
