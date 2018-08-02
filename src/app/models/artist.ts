@@ -22,5 +22,6 @@ export class Artist {
     tracks : Track[];
     play   : boolean = false;
     public_thumb : string = '';
-
+    priceUSD : number;
+    priceINR : number;
 }

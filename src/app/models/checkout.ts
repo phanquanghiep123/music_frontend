@@ -17,6 +17,11 @@ export class Checkout {
     updated_at: string = null;
     encrypted_data : string = "";
     access_code : string = "";
+    currency : string = '';
+    currencys : [
+        {icon : '$',name:"USD",value:'USD'}, 
+        {icon : '₹',name:"INR",value:'INR'} 
+    ]
     constructor() {
         var key = "";
         for (let i in this) {
@@ -69,4 +74,5 @@ export class Checkout {
     delCookie(name: string) {
         document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
+     
 }

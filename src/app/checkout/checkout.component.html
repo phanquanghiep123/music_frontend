@@ -24,7 +24,7 @@
                     <p class="track-genre">{{artist.type}}</p>
                     <h4 class="track-name">{{artist.name}}</h4>
                   </div>
-                  <div class="track-price">${{artist.price}}</div>
+                  <div class="track-price">{{checkout.currency}}{{checkout.price}}</div>
                 </div>
               </div>
             </div>
@@ -49,6 +49,17 @@
                     <span *ngIf="email.invalid && isSubmitCheckout == 1" class="error-messege">
                       <span *ngIf="email.errors.required" class="error">email is required.</span>
                       <span *ngIf="email.errors.email" class="error">email is not format.</span>
+                    </span>
+                  </p>
+                </div>
+                <div class="form-group form-group-js">
+                  <select [(ngModel)]="checkout.price" ngModel #price="ngModel" class="form-control" name="price">
+                    <option value="{{ artist.priceUSD }} USD">{{ artist.priceUSD }} USD</option>
+                    <option value="{{ artist.priceINR }} INR">{{ artist.priceINR }} INR</option>
+                  </select>
+                  <p>
+                    <span *ngIf="price.invalid && isSubmitCheckout == 1" class="error-messege">
+                      <span *ngIf="price.errors.required" class="error">email is required.</span>
                     </span>
                   </p>
                 </div>
