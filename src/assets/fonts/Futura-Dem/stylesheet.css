@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Futura-Dem';
+    src: url('Futura-Dem.eot');
+    src: url('Futura-Dem.eot?#iefix') format('embedded-opentype'),
+        url('Futura-Dem.woff2') format('woff2'),
+        url('Futura-Dem.woff') format('woff'),
+        url('Futura-Dem.ttf') format('truetype'),
+        url('Futura-Dem.svg#Futura-Dem') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+

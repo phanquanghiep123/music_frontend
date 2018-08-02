@@ -21,11 +21,12 @@ export class PrivacyPolicyComponent implements OnInit {
     $('body').attr('class', 'page-message page-success');
     this.titleService.setTitle('Privacy policy | Remyx');
     setTimeout(() => {
-      this.app.showLoading()
+      this.app.hiddenLoading();
     }, 500);
   }
   ngOnDestroy() {
     this.app.showLoading();
   }
+
 }
 
