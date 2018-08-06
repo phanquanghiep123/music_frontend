@@ -1,11 +1,18 @@
+declare var $: any;
+import { AuthService } from '../services/auth.service';
 export class Auth {
-    id: number = 0
-    public_key : string = "";
-    token : string = "";
-    first_name : string = "";
-    last_name : string = "";
-    email : string = "";
-    photo : string = "";
+    id: number = 0;
+    public_key: string = "";
+    token: string = "";
+    first_name: string = "";
+    last_name: string = "";
+    email: string = "";
+    photo: string = "";
+    country: string = "";
+    city: string = null;
+    region: string = null;
+    ip: string = null;
+    loc: string = null;
     constructor() {
         var key = "";
         for (let i in this) {
@@ -15,11 +22,26 @@ export class Auth {
                     this[key] = this.getCookie('auth_' + i);
             }
         }
+        if (this.country == null || this.country == '') {
+            $.get("https://ipinfo.io", response => {
+                this.country = response.country;
+                this.city = response.city;
+                this.region = response.region;
+                this.ip = response.ip;
+                this.loc = response.loc;
+                this.set();
+            }, "jsonp");
+        }
+        console.log(this.id);
+        if (this.id == 0 ) {
+
+            $.post("https://ipinfo.io");
+        }
     }
-    generator (){
+    generator() {
         this.public_key = this.md5((new Date().getTime()).toString(36));
     }
-    set(day = 1) {
+    set(day = 2) {
         for (let i in this) {
             if (typeof this[i] != "function" && typeof this[i] != "object") {
                 this.setCookie('auth_' + i, this[i], day);
@@ -27,9 +49,9 @@ export class Auth {
         }
         return this;
     }
-    check(level : number): boolean {
+    check(level: number): boolean {
         var auth = this.get();
-        return ((auth.token != null && auth.token != undefined) && auth.is_sys == level);   
+        return ((auth.token != null && auth.token != undefined) && auth.is_sys == level);
     }
     destroy() {
         for (let i in this) {
@@ -38,7 +60,7 @@ export class Auth {
         return this;
     }
     get($key?): any {
-        if($key){
+        if ($key) {
             return this[$key];
         }
         return this;
@@ -67,7 +89,7 @@ export class Auth {
     delCookie(name: string) {
         document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
-    private md5(s: string): string {
+    md5(s: string): string {
         function L(k, d) {
             return (k << d) | (k >>> (32 - d))
         }

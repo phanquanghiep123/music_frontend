@@ -1,5 +1,6 @@
 import { Config } from "../config";
 import { Currency } from './currency';
+declare var $: any;
 export class Checkout {
     id: number = 0
     full_name: string = "";
@@ -19,6 +20,9 @@ export class Checkout {
     access_code: string = "";
     currency: number = 0;
     constructor() {
+        this.init();
+    }
+    init () {
         var key = "";
         for (let i in this) {
             if (typeof this[i] != "function" && typeof this[i] != "object" && i != "status") {
