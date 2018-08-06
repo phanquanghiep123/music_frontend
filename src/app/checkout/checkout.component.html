@@ -24,7 +24,7 @@
                     <p class="track-genre">{{artist.type}}</p>
                     <h4 class="track-name">{{artist.name}}</h4>
                   </div>
-                  <div class="track-price">{{checkout.currency}}{{checkout.price}}</div>
+                  <div class="track-price">{{checkout.price.icon}}{{checkout.price.price}}</div>
                 </div>
               </div>
             </div>
@@ -54,8 +54,7 @@
                 </div>
                 <div class="form-group form-group-js">
                   <select [(ngModel)]="checkout.price" ngModel #price="ngModel" class="form-control" name="price">
-                    <option value="{{ artist.priceUSD }} USD">{{ artist.priceUSD }} USD</option>
-                    <option value="{{ artist.priceINR }} INR">{{ artist.priceINR }} INR</option>
+                    <option *ngFor="let price of artist.prices" [ngValue] ="price">{{ price.price }} {{price.value}}</option>
                   </select>
                   <p>
                     <span *ngIf="price.invalid && isSubmitCheckout == 1" class="error-messege">
@@ -156,7 +155,7 @@
               </div>
               <p class="text-center">
                 <button type="submit" class="btn btn-primary checkoutbn" [disabled]="formCheckout.form.status != 'VALID'" >
-                  <span class="rmicon icon-music"></span> Buy song ${{artist.price}}
+                  <span class="rmicon icon-music"></span> Buy song {{checkout.price.icon}}{{checkout.price.price}}
                 </button>
               </p>
             </form>

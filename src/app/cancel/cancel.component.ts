@@ -10,6 +10,7 @@ export class CancelComponent implements OnInit {
   constructor(private app : AppComponent) { }
 
   ngOnInit() {
+    this.app.hiddenLoading();
   }
   ngOnDestroy() {
     this.app.showLoading();

@@ -1,4 +1,5 @@
 import {Track} from './tracks'
+import {Currency} from './currency';
 export class Artist {
     id: number;
     name: string;
@@ -22,6 +23,6 @@ export class Artist {
     tracks : Track[];
     play   : boolean = false;
     public_thumb : string = '';
-    priceUSD : number;
-    priceINR : number;
+    prices : Currency[] = null;
+
 }

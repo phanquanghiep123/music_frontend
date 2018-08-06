@@ -1,5 +1,5 @@
 import { Config } from "../config";
-
+import { Currency } from './currency';
 export class Checkout {
     id: number = 0
     full_name: string = "";
@@ -10,22 +10,18 @@ export class Checkout {
     status: number = 0;
     slug: string = "";
     key: string = "";
-    price: number = 0;
+    price: Currency;
     cancel_url: string = Config.BASEURL + '/cancel'
     success_url: string = Config.BASEURL + '/thanks';
     created_at: string = null;
     updated_at: string = null;
-    encrypted_data : string = "";
-    access_code : string = "";
-    currency : string = '';
-    currencys : [
-        {icon : '$',name:"USD",value:'USD'}, 
-        {icon : '₹',name:"INR",value:'INR'} 
-    ]
+    encrypted_data: string = "";
+    access_code: string = "";
+    currency: number = 0;
     constructor() {
         var key = "";
         for (let i in this) {
-            if (typeof this[i] != "function" && typeof this[i] != "object" && i !="status") {
+            if (typeof this[i] != "function" && typeof this[i] != "object" && i != "status") {
                 key = "" + i;
                 if (this.getCookie('checkout_' + i) != null && this.getCookie('checkout_' + i) != "")
                     this[key] = this.getCookie('checkout_' + i);
@@ -74,5 +70,5 @@ export class Checkout {
     delCookie(name: string) {
         document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
-     
+
 }

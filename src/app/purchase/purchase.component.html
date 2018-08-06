@@ -21,7 +21,7 @@
                 <p class="track-genre">{{artist.type}}</p>
                 <h4 class="track-name">{{artist.name}}</h4>
               </div>
-              <div class="track-price">${{artist.price}}</div>
+              <div class="track-price">{{checkout.price.icon}}{{checkout.price.price}}</div>
             </div>
           </div>
         </div>
@@ -38,11 +38,5 @@
         </p>
       </div>
     </main>
-    <div class="none">
-      <form id="formCcavenue" method="POST" name="redirect" action="{{checkout.action}}">
-        <input type=hidden name=encRequest value={{checkout.encrypted_data}}>
-        <input type=hidden name=access_code value={{checkout.access_code}}> 
-      </form>
-    </div>
   </div>
 </div>

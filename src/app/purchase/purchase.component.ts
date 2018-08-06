@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArtistService } from '../services/artist.service';
@@ -30,6 +30,7 @@ export class PurchaseComponent implements OnInit {
     private paymentService: PaymentService
   ) {
     this.checkout = new Checkout();
+    console.log(this.checkout);
     if (this.checkout.id == null || this.checkout.id < 1) {
       this.route.navigate(['/']);
     }
@@ -46,6 +47,11 @@ export class PurchaseComponent implements OnInit {
         this.track = this.tracks[0];
         this.checkout.artist_id = this.artist.id;
         this.checkout.slug = this.artist.slug;
+        for (var i in this.artist.prices) {
+          if (this.artist.prices[i].id == this.checkout.currency) {
+            this.checkout.price = this.artist.prices[i];
+          }
+        }
         this.checkout.status = 1;
         this.checkout.set();
       }
@@ -60,15 +66,13 @@ export class PurchaseComponent implements OnInit {
     this.paymentService.purchase(this.checkout).subscribe(
       data => {
         this.service = data;
-        if(this.service.status){
-          if(this.service.redirect){
+        if (this.service.status) {
+          if (this.service.redirect) {
             window.location.href = this.service.response;
           }
-        }else
-        {
+        } else {
           alert(this.service.message);
         }
-        //this.app.loading = false;
       },
       error => {
         this.app.hiddenLoading();

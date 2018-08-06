@@ -46,8 +46,8 @@ export class CheckoutComponent implements OnInit {
         this.track = this.tracks[0];
         this.checkout.artist_id = this.artist.id;
         this.checkout.slug = this.artist.slug;
-        this.checkout.price = this.artist.priceUSD;
-        this.checkout.currency = "$";
+        this.checkout.price = this.artist.prices[0];
+        this.checkout.currency = this.checkout.price.id;
       }
       setTimeout(() => {
         this.app.hiddenLoading();

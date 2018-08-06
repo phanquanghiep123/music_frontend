@@ -122,10 +122,13 @@ export class DownloadComponent implements OnInit {
       this.track.play = false;
     }
     else {
+      this.SoundSource.crossOrigin = 'anonymous';
       this.SoundSource.src = Config.APIURL + 'downloads/file?public_key=' + this.auth.public_key + '&track_id=' + track.id + '&artist_id=' + track.artist_id + '';
+      console.log(Config.APIURL + 'downloads/file?public_key=' + this.auth.public_key + '&track_id=' + track.id + '&artist_id=' + track.artist_id + '');
       //this.SoundSource.src = this.service.public_url + this.track.path;
       setTimeout(() => {
         this.SoundSource.play();
+        
         this.track.play = true;
         this.SoundSource.onended = (() => {
           this.track.play = false;
