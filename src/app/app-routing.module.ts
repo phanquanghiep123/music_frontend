@@ -9,9 +9,12 @@ import {ThankyouComponent} from './thankyou/thankyou.component'
 import {DownloadComponent} from './download/download.component';
 import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
+import {ArtistComponent} from './artist/artist.component';
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '' ,redirectTo : '/artist',pathMatch :'full'},
   { path: 'checkout/:slug', component: CheckoutComponent },
+  { path: 'artist', component: ArtistComponent },
+  { path: 'artist/:slug', component: ArtistComponent },
   { path: 'purchase', component: PurchaseComponent },
   { path: 'download', component: DownloadComponent },
   { path: 'thanks', component: ThankyouComponent },

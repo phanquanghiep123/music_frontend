@@ -1,0 +1,75 @@
+<div *ngIf="artist" id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <div class="container-fluid">
+        <div class="track-content">
+          <div class="flex-md align-items-end row">
+            <div class="track-info col-md-5">
+              <h4 *ngIf="track" class="track-genre">{{track.type}}</h4>
+              <h2 *ngIf="track" class="track-name">{{track.name}}</h2>
+              <p *ngIf="track" class="track-des">{{track.description}}</p>
+            </div>
+            <div class="track-cover-holder col-md-7">
+              <div class="track-cover">
+                <img *ngIf="track" [src]="(track.thumb) ? (service.public_url + track.thumb) : '/assets/images/thumb.jpg' " alt="thumb photo">
+              </div>
+            </div>
+          </div>
+          <div class="track-btns flex-md row text-center">
+            <div class="col-md-6">
+              <button [ngClass]="artist.play ? 'is_play' : ''" class="btn btn-default" (click)="PlayTrack()">
+                <span class="rmicon {{ (artist.play) ? 'icon-stop'  :  'icon-play'}}"></span> {{ (artist.play) ? 'Stop sample' : 'Play sample'}} </button>
+            </div>
+            <div class="col-md-6">
+              <button routerLink="/checkout/{{artist.slug}}" class="btn btn-primary">
+                <span class="rmicon icon-music"></span>
+                <span *ngIf="currency" class="btn-text">Buy song {{currency.icon}}{{currency.price}}
+                  <span class="text-help hidden-md hidden-lg">High quality mp3 format</span>
+                </span>
+              </button>
+              <p class="hidden-xs hidden-sm">High quality mp3 format</p>
+            </div>
+          </div>
+        </div>
+        <div class="track-artist flex-md align-items-end">
+          <div class="w-100">
+            <h5 class="track-artist-name">Who is {{artist.name}}?</h5>
+            <p class="track-artist-bio">{{artist.bio}}</p>
+            <img class="w-100" [src]="(artist.avatar) ? (service.public_url + artist.avatar) : '/assets/images/artist-logo.jpg' " alt="artist thumb photo">
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<div class="home-loading open-loading">
+  <header class="site-header" role="banner">
+    <a href="javascript:;" (click)="loadding == true ? hiddenLoadding() : showLoadding();" class="logo"></a>
+  </header>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="block-page">
+            <h3>- Philosophy</h3>
+            <p>
+              Banjo ethical readymade, microdosing subway tile pinterest glossier put a bird on it retro direct trade blog tumeric wayfarers
+              mustache Thundercats hella sartorial occupy portland DIY raclette mlkshk poke DIY chambray franzen tattooed
+              thundercats master
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="block-page">
+            <h3>- About</h3>
+            <p>We are a quadruple award winning hyper active super duper cryptocurrency consultation and technology assessment
+              firm that will help you understand what's going on in the present and future of finances</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- #content -->

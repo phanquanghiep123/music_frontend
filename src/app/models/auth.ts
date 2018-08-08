@@ -22,24 +22,17 @@ export class Auth {
                     this[key] = this.getCookie('auth_' + i);
             }
         }
-        if (this.country == null || this.country == '') {
-            $.get("https://ipinfo.io", response => {
-                this.country = response.country;
-                this.city = response.city;
-                this.region = response.region;
-                this.ip = response.ip;
-                this.loc = response.loc;
-                this.set();
-            }, "jsonp");
-        }
-        console.log(this.id);
-        if (this.id == 0 ) {
-
-            $.post("https://ipinfo.io");
+        if (this.id == 0 || '' + this.id == '0') {
+            this.generator_token()
         }
     }
     generator() {
         this.public_key = this.md5((new Date().getTime()).toString(36));
+        this.set();
+    }
+    generator_token() {
+        this.token = this.md5((new Date().getTime()).toString(36));
+        this.set();
     }
     set(day = 2) {
         for (let i in this) {

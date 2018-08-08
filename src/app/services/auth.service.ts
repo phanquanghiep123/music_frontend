@@ -16,6 +16,10 @@ export class AuthService {
     return this.http.post<any>( Config.APIURL + this.controller + '/login',$model) ;
   }
   add ($auth : Auth){
-    return this.http.post<any>( Config.APIURL + this.controller + '/addcustomer',$auth) ;
+    return this.http.post<any>( Config.APIURL + this.controller + '/add',$auth) ;
   }
+  ipinfo() {
+    return this.http.get<any>('https://ipinfo.io') ;
+  }
+  
 }

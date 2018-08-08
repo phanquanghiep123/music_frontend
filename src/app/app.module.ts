@@ -24,6 +24,7 @@ import { Login } from './models/login';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CancelComponent } from './cancel/cancel.component';
+import { ArtistComponent } from './artist/artist.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { CancelComponent } from './cancel/cancel.component';
     ThankyouComponent,
     PrivacyPolicyComponent,
     ContactUsComponent,
-    CancelComponent
+    CancelComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,

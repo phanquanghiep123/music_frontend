@@ -1,17 +1,19 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Artist } from '../models/artist';
 import { Track } from '../models/tracks';
 import { ArtistService } from '../services/artist.service';
 import { Service } from '../models/service'
 import { AppComponent } from '../app.component';
 import { Title } from '@angular/platform-browser';
+import { Currency } from '../models/currency';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'artist-home',
+  templateUrl: './artist.component.html',
+  styleUrls: ['./artist.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ArtistComponent implements OnInit {
   artist: Artist;
   service: Service;
   tracks: Track[];
@@ -19,8 +21,14 @@ export class HomeComponent implements OnInit {
   indexTrack = 0;
   loadding = false;
   SoundSource = new Audio();
-  @ViewChild('audioPlay') audioPlay: ElementRef;
-  constructor(private titleService: Title, private artistService: ArtistService, private app: AppComponent) {
+  currency: Currency;
+  constructor(
+    private titleService: Title,
+    private route: Router,
+    private router: ActivatedRoute,
+    private artistService: ArtistService,
+    private app: AppComponent,
+  ) {
     this.app.loading = false;
     this.SoundSource.onended = (() => {
       this.indexTrack++;
@@ -39,11 +47,13 @@ export class HomeComponent implements OnInit {
         }, 50);
       }, 50);
     });
+
   }
   ngOnInit() {
+    const slug = this.router.snapshot.paramMap.get('slug');
+    this.titleService.setTitle('Home | Remyx');
     $('body').attr('class', 'page-track');
     this.titleService.setTitle('Home | Remyx');
-    this.app.showLogopayment = false;
     this.artistService.first().subscribe(data => {
       this.service = data;
       if (this.service.status) {
@@ -58,8 +68,37 @@ export class HomeComponent implements OnInit {
             $("body").removeClass("open-loading");
           });
         });
-      }, 1000); 
+      }, 1000);
     });
+    if (slug == null) {
+      this.artistService.first().subscribe(data => {
+        this.service = data;
+        if (this.service.status) {
+          this.artist = this.service.response;
+          this.route.navigate(['artist/' + this.artist.slug]);
+        }
+      });
+    } else {
+      this.artistService.first(slug).subscribe(data => {
+        this.service = data;
+        if (this.service.status) {
+          this.artist = this.service.response;
+          this.tracks = this.artist.tracks;
+          this.track = this.tracks[0];
+          var next = false;
+          for (let i in this.artist.prices) {
+            if (this.artist.prices[i].value == this.app.auth.country) {
+              this.currency = this.artist.prices[i];
+              next = true;
+            }
+          }
+          if (!next) {
+            this.currency = this.artist.prices[0];
+          }
+        }
+        this.app.hiddenLoading();
+      });
+    }
   }
   PlayTrack() {
     if (this.artist.play) {
@@ -90,14 +129,14 @@ export class HomeComponent implements OnInit {
         $(this).animate({ height: '74px' }, 250, function () {
         });
       });
-    },1000)
+    }, 1000)
   }
   showLoadding() {
     this.loadding = true;
     $("body").addClass("open-loading");
     $(".home-loading").animate({ height: '100%' }, 250, function () {
       $(this).animate({ width: '100%' }, 500, function () {
-        $(".home-loading").addClass("open-loading"); 
+        $(".home-loading").addClass("open-loading");
       });
     });
   }
