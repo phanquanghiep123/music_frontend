@@ -48,7 +48,7 @@ export class CheckoutComponent implements OnInit {
         this.checkout.slug = this.artist.slug;
         var next = false;
         for (let i in this.artist.prices){
-          if(this.artist.prices[i].value == this.app.auth.country){
+          if(this.artist.prices[i].name == this.app.auth.country){
             this.checkout.price  = this.artist.prices[i];
             next = true;
           }
@@ -75,11 +75,19 @@ export class CheckoutComponent implements OnInit {
       data => {
         this.service = data;
         if (this.service.status) {
-          for (let i in this.service.response){
-            this.checkout[i] = this.service.response[i];
-          }
-          this.checkout.set();
-          this.route.navigate(['/purchase']);
+          if(this.service.redirect){
+            for (let i in this.service.response['checkout']){
+              this.checkout[i] = this.service.response['checkout'][i];
+            }
+            this.checkout.set();
+            window.location.href = this.service.response['url'];
+          }else{
+            for (let i in this.service.response){
+              this.checkout[i] = this.service.response[i];
+            }
+            this.checkout.set();
+            this.route.navigate(['/purchase']);
+          }        
         }
         this.app.hiddenLoading();
       },

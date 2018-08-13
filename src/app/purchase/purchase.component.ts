@@ -30,7 +30,6 @@ export class PurchaseComponent implements OnInit {
     private paymentService: PaymentService
   ) {
     this.checkout = new Checkout();
-    console.log(this.checkout);
     if (this.checkout.id == null || this.checkout.id < 1) {
       this.route.navigate(['/']);
     }

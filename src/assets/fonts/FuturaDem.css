@@ -7,3 +7,12 @@
          url('FuturaDem.ttf') format('truetype'),
          url('FuturaDem.svg#FuturaDem') format('svg');
 }
+@font-face {
+    font-family: 'FuturaMedium';
+    src: url('FuturaMedium.eot');
+    src: url('FuturaMedium.eot') format('embedded-opentype'),
+         url('FuturaMedium.woff2') format('woff2'),
+         url('FuturaMedium.woff') format('woff'),
+         url('FuturaMedium.ttf') format('truetype'),
+         url('FuturaMedium.svg#FuturaMedium') format('svg');
+}

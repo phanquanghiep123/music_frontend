@@ -63,8 +63,8 @@ export class ArtistComponent implements OnInit {
       }
       $(".home-loading").removeClass("open-loading");
       setTimeout(function () {
-        $(".home-loading").animate({ width: '74px' }, 500, function () {
-          $(this).animate({ height: '74px' }, 250, function () {
+        $(".home-loading").animate({ width: '112px' }, 500, function () {
+          $(this).animate({ height: '112px' }, 250, function () {
             $("body").removeClass("open-loading");
           });
         });
@@ -87,7 +87,7 @@ export class ArtistComponent implements OnInit {
           this.track = this.tracks[0];
           var next = false;
           for (let i in this.artist.prices) {
-            if (this.artist.prices[i].value == this.app.auth.country) {
+            if (this.artist.prices[i].name == this.app.auth.country) {
               this.currency = this.artist.prices[i];
               next = true;
             }
@@ -125,8 +125,8 @@ export class ArtistComponent implements OnInit {
     $("body").addClass("open-loading");
     $(".home-loading").removeClass("open-loading");
     setTimeout(function () {
-      $(".home-loading").animate({ width: '74px' }, 500, function () {
-        $(this).animate({ height: '74px' }, 250, function () {
+      $(".home-loading").animate({ width: '112px' }, 500, function () {
+        $(this).animate({ height: '112px' }, 250, function () {
         });
       });
     }, 1000)

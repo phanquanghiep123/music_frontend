@@ -31,6 +31,7 @@ export class ThankyouComponent implements OnInit {
     $('body').attr('class', 'page-message page-success');
     this.titleService.setTitle('Thanks you | Remyx');
     this.queryParams = this.activatedRoute.snapshot.queryParams;
+    console.log(this.checkout);
     if (this.checkout.key == this.queryParams['key']) {
       this.auth.generator();
       this.auth.set(2);
