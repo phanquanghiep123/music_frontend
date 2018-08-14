@@ -53,8 +53,9 @@ export class HomeComponent implements OnInit {
       }
       $(".home-loading").removeClass("open-loading");
       setTimeout(function () {
-        $(".home-loading").animate({ width: '112px' }, 500, function () {
-          $(this).animate({ height: '112px' }, 250, function () {
+        var w = $("header.site-header .logo").innerWidth();
+        $(".home-loading").animate({ width: w + 'px' }, 500, function () {
+          $(this).animate({ height: w+'px' }, 250, function () {
             $("body").removeClass("open-loading");
           });
         });
@@ -86,8 +87,9 @@ export class HomeComponent implements OnInit {
     $("body").addClass("open-loading");
     $(".home-loading").removeClass("open-loading");
     setTimeout(function () {
-      $(".home-loading").animate({ width: '112px' }, 500, function () {
-        $(this).animate({ height: '112px' }, 250, function () {
+      var w = $("header.site-header .logo").innerWidth();
+      $(".home-loading").animate({ width: w + 'px' }, 500, function () {
+        $(this).animate({ height: w + 'px' }, 250, function () {
         });
       });
     },1000)
