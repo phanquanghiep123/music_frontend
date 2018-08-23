@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       setTimeout(() => {
         this.SoundSource.pause();
         this.SoundSource.currentTime = 0;
-        this.SoundSource.src = this.service.public_url + this.track.path;
+        this.SoundSource.src = this.service.public_url + this.track.pathex;
         setTimeout(() => {
           this.SoundSource.play();
         }, 50);
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
         this.indexTrack = 0;
         this.track = this.tracks[this.indexTrack];
       }
-      this.SoundSource.src = this.service.public_url + this.track.path;
+      this.SoundSource.src = this.service.public_url + this.track.pathex;
       setTimeout(() => {
         this.SoundSource.play()
         this.artist.play = true;

@@ -87,7 +87,7 @@ export class DownloadComponent implements OnInit {
   downloadfile($track: Track) {
     this.track = $track;
     this.track.download = true;
-    var url = Config.APIURL + 'downloads/file?public_key=' + this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '';
+    var url = this.service.public_url + '/downloads/zipfiles?public_key=' + this.auth.public_key + '&track_id=' + $track.id + '&artist_id=' + $track.artist_id + '';
     var link = document.createElement('a');
     link.href = url;
     link.setAttribute('download', $track.name + '.' + $track.extension);

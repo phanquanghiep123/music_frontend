@@ -6,6 +6,7 @@ export class Track {
     description: string;
     thumb: string = "";
     path: string = "";
+    pathex: string = "";
     thumbFile: File;
     pathFile: File;
     slug: string;
