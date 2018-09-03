@@ -4,7 +4,7 @@
     var MAIN_UI = {
 		//INIT
         init: function () {
-			this.init_form();
+			//this.init_form();
         },
 		resize: function(){
 			
@@ -26,6 +26,9 @@
 			});
 			
 		},
+		init_loading: function(){
+			$('.loading').delay( 1000 ).fadeOut();
+		},
 		
 		
     };
@@ -36,7 +39,7 @@
         MAIN_UI.resize();
     });
     $(window).load(function () {
-
+		MAIN_UI.init_loading();
     });
 
 })(jQuery);

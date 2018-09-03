@@ -29,7 +29,7 @@ export class ArtistComponent implements OnInit {
     private artistService: ArtistService,
     private app: AppComponent,
   ) {
-    this.app.loading = false;
+    this.app.loading = true;
     this.SoundSource.onended = (() => {
       this.indexTrack++;
       if (typeof this.tracks[this.indexTrack] !== 'undefined') {
@@ -61,14 +61,6 @@ export class ArtistComponent implements OnInit {
         this.tracks = this.artist.tracks;
         this.track = this.tracks[0];
       }
-      $(".home-loading").removeClass("open-loading");
-      setTimeout(function () {
-        $(".home-loading").animate({ width: '112px' }, 500, function () {
-          $(this).animate({ height: '112px' }, 250, function () {
-            $("body").removeClass("open-loading");
-          });
-        });
-      }, 1000);
     });
     if (slug == null) {
       this.artistService.first().subscribe(data => {
@@ -76,6 +68,7 @@ export class ArtistComponent implements OnInit {
         if (this.service.status) {
           this.artist = this.service.response;
           this.route.navigate(['artist/' + this.artist.slug]);
+          this.app.hiddenLoading();
         }
       });
     } else {
@@ -95,8 +88,9 @@ export class ArtistComponent implements OnInit {
           if (!next) {
             this.currency = this.artist.prices[0];
           }
+          this.app.hiddenLoading();
         }
-        this.app.hiddenLoading();
+        
       });
     }
   }
@@ -120,33 +114,11 @@ export class ArtistComponent implements OnInit {
     }
 
   }
-  hiddenLoadding() {
-    this.loadding = false;
-    $("body").addClass("open-loading");
-    $(".home-loading").removeClass("open-loading");
-    setTimeout(function () {
-      $(".home-loading").animate({ width: '112px' }, 500, function () {
-        $(this).animate({ height: '112px' }, 250, function () {
-        });
-      });
-    }, 1000)
-  }
-  showLoadding() {
-    this.loadding = true;
-    $("body").addClass("open-loading");
-    $(".home-loading").animate({ height: '100%' }, 250, function () {
-      $(this).animate({ width: '100%' }, 500, function () {
-        $(".home-loading").addClass("open-loading");
-      });
-    });
-  }
   ngOnDestroy() {
     try {
       this.SoundSource.pause();
       this.SoundSource.currentTime = 0;
-    } catch (error) { }
-    this.app.loading = true;
-    this.app.showLoading();
-  }
+    } catch (error) {} 
+    this.app.showLoading();}
 
 }

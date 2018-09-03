@@ -17,11 +17,10 @@ export class HomeComponent implements OnInit {
   tracks: Track[];
   track: Track;
   indexTrack = 0;
-  loadding = false;
   SoundSource = new Audio();
   @ViewChild('audioPlay') audioPlay: ElementRef;
   constructor(private titleService: Title, private artistService: ArtistService, private app: AppComponent) {
-    this.app.loading = false;
+    this.app.showLoading();
     this.SoundSource.onended = (() => {
       this.indexTrack++;
       if (typeof this.tracks[this.indexTrack] !== 'undefined') {
@@ -59,6 +58,7 @@ export class HomeComponent implements OnInit {
           });
         });
       }, 1000); 
+      this.app.hiddenLoading();
     });
   }
   PlayTrack() {
@@ -82,7 +82,6 @@ export class HomeComponent implements OnInit {
 
   }
   hiddenLoadding() {
-    this.loadding = false;
     $("body").addClass("open-loading");
     $(".home-loading").removeClass("open-loading");
     setTimeout(function () {
@@ -93,7 +92,6 @@ export class HomeComponent implements OnInit {
     },1000)
   }
   showLoadding() {
-    this.loadding = true;
     $("body").addClass("open-loading");
     $(".home-loading").animate({ height: '100%' }, 250, function () {
       $(this).animate({ width: '100%' }, 500, function () {
