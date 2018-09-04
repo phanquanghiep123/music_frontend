@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 declare var $: any;
 @Component({
   selector: 'app-loading',
@@ -13,18 +13,16 @@ export class LoadingComponent implements OnInit {
   }
   hiddenloadding() {
     if (this.loading == true) {
-      setTimeout(() => {
-        this.loading = false;
-        $("#apploading").hide();
-        $("body").removeClass("open-loading");
-      }, 1000);
+      this.loading = false;
+      $('.loading').fadeOut();
+      $("body .site").removeClass("open-loadding");
     }
   }
   showloadding() {
-    if (this.loading == false) {      
-      $("body").addClass("open-loading");
+    if (this.loading == false) {
       this.loading = true;
-      $("#apploading").show();
+      $("body .site").addClass("open-loadding");
+      $('.loading').fadeIn();
     }
   }
 }

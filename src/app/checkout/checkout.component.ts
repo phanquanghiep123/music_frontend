@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit {
     this.checkout = new Checkout();
     this.checkout.status = 1;
     const slug = this.router.snapshot.paramMap.get('slug');
-    this.titleService.setTitle('Checkout | Remyx');
+    
     $('body').attr('class', 'page-checkout');
     this.artistService.first(slug).subscribe(data => {
       this.service = data;
@@ -47,20 +47,19 @@ export class CheckoutComponent implements OnInit {
         this.checkout.artist_id = this.artist.id;
         this.checkout.slug = this.artist.slug;
         var next = false;
-        for (let i in this.artist.prices){
-          if(this.artist.prices[i].name == this.app.auth.country){
-            this.checkout.price  = this.artist.prices[i];
+        for (let i in this.artist.prices) {
+          if (this.artist.prices[i].name == this.app.auth.country) {
+            this.checkout.price = this.artist.prices[i];
             next = true;
           }
         }
-        if(!next){
-          this.checkout.price  = this.artist.prices[0];
+        if (!next) {
+          this.checkout.price = this.artist.prices[0];
         }
         this.checkout.currency = this.checkout.price.id;
+        this.titleService.setTitle('Checkout | ' + this.artist.name + ' | ' + this.track.name);
       }
-      setTimeout(() => {
-        this.app.hiddenLoading();
-      }, 500);
+      this.app.hiddenLoading();
       this.app.showLogopayment = true;
     });
   }
@@ -75,19 +74,19 @@ export class CheckoutComponent implements OnInit {
       data => {
         this.service = data;
         if (this.service.status) {
-          if(this.service.redirect){
-            for (let i in this.service.response['checkout']){
+          if (this.service.redirect) {
+            for (let i in this.service.response['checkout']) {
               this.checkout[i] = this.service.response['checkout'][i];
             }
             this.checkout.set();
             window.location.href = this.service.response['url'];
-          }else{
-            for (let i in this.service.response){
+          } else {
+            for (let i in this.service.response) {
               this.checkout[i] = this.service.response[i];
             }
             this.checkout.set();
             this.route.navigate(['/purchase']);
-          }        
+          }
         }
         this.app.hiddenLoading();
       },
@@ -95,7 +94,7 @@ export class CheckoutComponent implements OnInit {
         this.app.hiddenLoading();
       }
     )
-    
+
   }
   ngOnDestroy() {
     this.app.showLoading();

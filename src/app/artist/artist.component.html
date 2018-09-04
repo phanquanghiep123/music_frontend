@@ -5,7 +5,7 @@
         <div class="track-content">
           <div class="flex-md align-items-end row">
             <div class="track-info col-md-5">
-              <h4 *ngIf="track" class="track-genre">{{track.type}}</h4>
+              <h4 *ngIf="track" class="track-genre">{{track.genre}}</h4>
               <h2 *ngIf="track" class="track-name">{{track.name}}</h2>
               <p *ngIf="track" class="track-des">{{track.description}}</p>
             </div>
@@ -18,7 +18,7 @@
           <div class="track-btns flex-md row text-center">
             <div class="col-md-6">
               <button [ngClass]="artist.play ? 'is_play' : ''" class="btn btn-default" (click)="PlayTrack()">
-                <span class="rmicon {{ (artist.play) ? 'icon-stop'  :  'icon-play'}}"></span> {{ (artist.play) ? 'Stop sample' : 'Play sample'}} </button>
+                <span class="rmicon {{ (artist.play) ? 'icon-stop'  :  'icon-play'}}"></span> <span class="btn-text">{{ (artist.play) ? 'Stop sample' : 'Play sample'}}</span> </button>
             </div>
             <div class="col-md-6">
               <button routerLink="/checkout/{{artist.slug}}" class="btn btn-primary">

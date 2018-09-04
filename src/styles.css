@@ -1,4 +1,3 @@
-body{
-    height: 100vh !important;
-    overflow: hidden;
+.site.open-loadding .content-body-page{
+    display: none;
 }
