@@ -1,18 +1,30 @@
 @font-face {
-    font-family: 'FuturaDem';
+    font-family: 'Futura';
     src: url('FuturaDem.eot');
     src: url('FuturaDem.eot') format('embedded-opentype'),
          url('FuturaDem.woff2') format('woff2'),
          url('FuturaDem.woff') format('woff'),
          url('FuturaDem.ttf') format('truetype'),
-         url('FuturaDem.svg#FuturaDem') format('svg');
+         url('FuturaDem.svg#Futura') format('svg');
+	font-weight:700;
 }
 @font-face {
-    font-family: 'FuturaMedium';
+    font-family: 'Futura';
     src: url('FuturaMedium.eot');
     src: url('FuturaMedium.eot') format('embedded-opentype'),
          url('FuturaMedium.woff2') format('woff2'),
          url('FuturaMedium.woff') format('woff'),
          url('FuturaMedium.ttf') format('truetype'),
-         url('FuturaMedium.svg#FuturaMedium') format('svg');
+         url('FuturaMedium.svg#Futura') format('svg');
+	font-weight:500;
+}
+@font-face {
+    font-family: 'Futura';
+    src: url('FuturaBoo.eot');
+    src: url('FuturaBoo.eot') format('embedded-opentype'),
+         url('FuturaBoo.woff2') format('woff2'),
+         url('FuturaBoo.woff') format('woff'),
+         url('FuturaBoo.ttf') format('truetype'),
+         url('FuturaBoo.svg#Futura') format('svg');
+	font-weight:400;
 }

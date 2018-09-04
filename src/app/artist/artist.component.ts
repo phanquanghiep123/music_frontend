@@ -29,7 +29,7 @@ export class ArtistComponent implements OnInit {
     private artistService: ArtistService,
     private app: AppComponent,
   ) {
-    this.app.loading = false;
+    this.app.loading = true;
     this.SoundSource.onended = (() => {
       this.indexTrack++;
       if (typeof this.tracks[this.indexTrack] !== 'undefined') {
@@ -61,15 +61,6 @@ export class ArtistComponent implements OnInit {
         this.tracks = this.artist.tracks;
         this.track = this.tracks[0];
       }
-      $(".home-loading").removeClass("open-loading");
-      setTimeout(function () {
-        var w = $("header.site-header .logo").innerWidth();
-        $(".home-loading").animate({ width: w+'px' }, 500, function () {
-          $(this).animate({ height: w+'px' }, 250, function () {
-            $("body").removeClass("open-loading");
-          });
-        });
-      }, 1000);
     });
     if (slug == null) {
       this.artistService.first().subscribe(data => {
@@ -77,6 +68,7 @@ export class ArtistComponent implements OnInit {
         if (this.service.status) {
           this.artist = this.service.response;
           this.route.navigate(['artist/' + this.artist.slug]);
+          this.app.hiddenLoading();
         }
       });
     } else {
@@ -96,8 +88,9 @@ export class ArtistComponent implements OnInit {
           if (!next) {
             this.currency = this.artist.prices[0];
           }
+          this.app.hiddenLoading();
         }
-        this.app.hiddenLoading();
+        
       });
     }
   }
@@ -146,10 +139,7 @@ export class ArtistComponent implements OnInit {
     try {
       this.SoundSource.pause();
       this.SoundSource.currentTime = 0;
-    } catch (error) { }
-    $(".home-loading").remove();
-    this.app.loading = true;
-    this.app.showLoading();
-  }
+    } catch (error) {} 
+    this.app.showLoading();}
 
 }

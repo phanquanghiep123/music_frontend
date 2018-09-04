@@ -35,7 +35,7 @@ export class PurchaseComponent implements OnInit {
     }
   }
   ngOnInit() {
-    $('body').attr('class', 'page-confirm');
+    $('body').attr('class', 'page-checkout');
     this.titleService.setTitle('Confirm Purchase | Remyx');
     const slug = this.checkoutInfo['slug'];
     this.artistService.first(slug).subscribe(data => {

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'FuturaBoo';
+    src: url('fonts/FuturaBoo.eot');
+    src: url('fonts/FuturaBoo.eot') format('embedded-opentype'),
+         url('fonts/FuturaBoo.woff2') format('woff2'),
+         url('fonts/FuturaBoo.woff') format('woff'),
+         url('fonts/FuturaBoo.ttf') format('truetype'),
+         url('fonts/FuturaBoo.svg#FuturaBoo') format('svg');
+}

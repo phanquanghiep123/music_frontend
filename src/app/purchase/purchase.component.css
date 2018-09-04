@@ -1,0 +1,12 @@
+.track-cover {
+    padding: 22px;
+    background-color: #fff;
+    -webkit-box-shadow: 26px 20px 106px 0 rgba(0,0,0,0.26);
+    box-shadow: 26px 20px 106px 0 rgba(0,0,0,0.26);
+    max-width: 400px;
+    margin: 25px auto;
+}
+.track-text {
+    width: 400px;
+    margin: 25px auto;
+}

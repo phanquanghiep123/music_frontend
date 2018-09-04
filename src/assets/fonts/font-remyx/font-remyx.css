@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('icomoon.eot?job8jq');
-  src:  url('icomoon.eot?job8jq#iefix') format('embedded-opentype'),
-    url('icomoon.ttf?job8jq') format('truetype'),
-    url('icomoon.woff?job8jq') format('woff'),
-    url('icomoon.svg?job8jq#icomoon') format('svg');
+  src:  url('icomoon.eot?cqv6mu');
+  src:  url('icomoon.eot?cqv6mu#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?cqv6mu') format('truetype'),
+    url('icomoon.woff?cqv6mu') format('woff'),
+    url('icomoon.svg?cqv6mu#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,12 +24,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-logo-rupantor:before {
+  content: "\e905";
+}
+.icon-logo:before {
+  content: "\e903";
+}
+.icon-logo-img:before {
+  content: "\e904";
+}
 .icon-music:before {
   content: "\e900";
 }
-.icon-stop:before {
+.icon-play:before {
   content: "\e901";
 }
-.icon-play:before {
+.icon-stop:before {
   content: "\e902";
 }

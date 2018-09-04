@@ -47,6 +47,7 @@ export class DownloadComponent implements OnInit {
         this.service = data;
         if (this.service.status) {
           this.artists = this.service.response;
+          this.artist = this.service.response.artist;
           this.tracks = this.service.response.tracks;
           this.download = this.service.response.download;
           this.hoursDownload = this.download.diffTime;

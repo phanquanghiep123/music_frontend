@@ -15,9 +15,8 @@ export class LoadingComponent implements OnInit {
     if (this.loading == true) {
       setTimeout(() => {
         this.loading = false;
-        $("#apploading").animate({ top: '100%' }, 250,function(){
-          $("body").removeClass("open-loading");
-        });
+        $("#apploading").hide();
+        $("body").removeClass("open-loading");
       }, 1000);
     }
   }
@@ -25,7 +24,7 @@ export class LoadingComponent implements OnInit {
     if (this.loading == false) {      
       $("body").addClass("open-loading");
       this.loading = true;
-      $("#apploading").animate({ top: '0' }, 250);
+      $("#apploading").show();
     }
   }
 }

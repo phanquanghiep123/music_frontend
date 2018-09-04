@@ -2,40 +2,57 @@
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
       <div class="container">
-        <h2 class="confirm-title text-center">Confirm Purchase</h2>
-        <div class="confirm-message text-center">
-          <h4>You’re almost done.</h4>
-          <p>
-            <strong>Review your information before place your order.</strong>
-          </p>
-        </div>
-        <div class="track-holder">
-          <div class="track track-review">
-            <div class="track-cover-holder">
-              <div class="track-cover">
-                  <img *ngIf="track" [src]="(track.thumb) ? (service.public_url + track.thumb) : '/assets/images/thumb.jpg' " alt="thumb photo">
+        <div class="flex-md row">
+          <div class="col-md-12">
+            <h2 class="confirm-title text-center">Confirm Purchase</h2>
+            <div class="confirm-message text-center">
+              <h4>You’re almost done.</h4>
+              <p>
+                <strong>Review your information before place your order.</strong>
+              </p>
+            </div>
+            <div class="track-holder">
+              <div class="track track-review">
+                <div class="track-cover-holder">
+                  <div class="track-cover">
+                    <img *ngIf="track" [src]="(track.thumb) ? (service.public_url + track.thumb) : '/assets/images/thumb.jpg' "
+                      alt="thumb photo">
+                  </div>
+                </div>
+                
+                <div class="track-text flex-xs">
+                  <div class="track-info">
+                    <p class="track-genre">{{artist.type}}</p>
+                    <h4 class="track-name">{{artist.name}}</h4>
+                  </div>
+                  <div class="track-price">{{checkout.price.icon}}{{checkout.price.price}}</div>
+                </div>
               </div>
             </div>
-            <div class="track-text flex-xs">
-              <div class="track-info">
-                <p class="track-genre">{{artist.type}}</p>
-                <h4 class="track-name">{{artist.name}}</h4>
-              </div>
-              <div class="track-price">{{checkout.price.icon}}{{checkout.price.price}}</div>
-            </div>
+            <p class="text-center btn-holder">
+              <button (click)="OnConfirm()" class="btn btn-primary">
+                <span class="rmicon icon-music"></span>
+                <span class="btn-text">Confirm
+                  <span class="text-help hidden-md hidden-lg">High quality mp3 format</span>
+                </span>
+              </button>
+            </p>
+            <p class="text-center text-note hidden-xs hidden-sm">
+              <strong>Please note: This is a digital download in high quality mp3 format</strong>
+            </p>
           </div>
         </div>
-        <p class="text-center btn-holder">
-          <button (click)="OnConfirm()" class="btn btn-primary">
-            <span class="rmicon icon-music"></span>
-            <span class="btn-text">Confirm
-              <span class="text-help hidden-md hidden-lg">High quality mp3 format</span>
-            </span>
-          </button>
-        </p>
-        <p class="text-center text-note hidden-xs hidden-sm">
-          <strong>Please note: This is a digital download in high quality mp3 format</strong>
-        </p>
+        <div class="track-artist flex-md align-items-end justify-content-end">
+          <div class="track-artist-inner">
+            <div class="track-artist-text">
+              <h5 class="track-artist-name">- Who is Rupantor?</h5>
+              <p class="track-artist-bio">Donec venenatis turpis eu mauris tempor ultricies. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
+            </div>
+            <div class="track-artist-logo"><img [src]="(artist.avatar) ? (service.public_url + artist.avatar) : '/assets/images/thumb.jpg'"
+                src="/asset/images/logo-rupantor.svg" alt="rupantor"></div>
+          </div>
+        </div>
       </div>
     </main>
   </div>

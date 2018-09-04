@@ -1,36 +1,43 @@
-<div id="content" class="site-content">
+
+
+
+<div id="content" class="site-content" *ngIf="artist">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
       <div class="container">
-        <h2 class="download-title">This download would be availbale for another
-          <span class="time">{{hours < 10 ? '0' + hours : hours }}:{{munites < 10 ? '0' + munites : munites}}:{{seconds < 10 ? '0' + seconds :  seconds}}</span> hours</h2>
-        <div class="list-tracks">
-          <div *ngFor="let item of tracks;let i = index ;" class="track">
-            <div class="row">
-              <div class="col-sm-6 col-md-8">
-                <div class="track-text">
-                  <div class="track-number">{{(i+1)}}.</div>
-                  <h4 class="track-title">{{item.name}}</h4>
-                  <div class="track-info">{{item.description}}</div>
-                  <div *ngIf="item.download" class="progress">
-                    <div id= "track-{{item.id}}" class="progress-bar" role="progressbar" aria-valuenow="70"aria-valuemin="0" aria-valuemax="100" style="width:0%">
-                      <span class="sr-only">0% Complete</span>
+        <div class="download-logo"><img [src]="(artist.avatar) ? (service.public_url + artist.avatar) : '/assets/images/logo-rupantor-color.svg'"></div>
+        <h2 class="download-title">This download would be availbale for another <span class="time">{{hours < 10 ? '0' + hours : hours }}:{{munites < 10 ? '0' + munites : munites}}:{{seconds < 10 ? '0' + seconds :  seconds}}</span> hours</h2>
+        <div class="list-tracks">   
+            <div *ngFor="let item of tracks;let i = index ;" class="track">
+                <div class="row">
+                  <div class="col-sm-6 col-md-8">
+                    <div class="track-text">
+                      <div class="track-number">{{(i+1)}}.</div>
+                      <h4 class="track-title">{{item.name}}</h4>
+                      <div class="track-info">{{item.description}}</div>
                     </div>
                   </div>
+                  <div class="col-sm-3 col-md-2">
+                    <div class="track-size hidden-xs">{{formatBytes(item.size)}}</div>
+                  </div>
+                  <div class="col-sm-3 col-md-2">
+                    <button [ngClass]="(item.download) ? 'activer' : ''"  [disabled]="item.download" (click)="downloadfile(item)" class="btn btn-download">Download <i class="fa fa-cloud-download" aria-hidden="true"></i></button>            
+                  </div>
                 </div>
-              </div>
-              <div class="col-sm-3 col-md-2">
-                <div class="track-size hidden-xs">{{formatBytes(item.size)}}</div>
-              </div>
-              <div class="col-sm-3 col-md-2">
-                <button [ngClass]="(item.download) ? 'activer' : ''"  [disabled]="item.download" (click)="downloadfile(item)" class="btn btn-download">Download <i class="fa fa-cloud-download" aria-hidden="true"></i></button>
-                <button [ngClass]="(item.play) ? 'activer' : ''" class="btn btn-download" (click)="PlayTrack(item)">{{ (item.play) ? 'Stop'  :  'Play'}} <i class="fa {{ (item.play) ? 'fa-stop-circle'  :  'fa-play-circle-o'}}" aria-hidden="true"></i></button>
-              </div>
+                <hr/>
+              </div>         
+        </div>
+        <div class="track-artist flex-md align-items-end justify-content-end">
+          <div class="track-artist-inner">
+            <div class="track-artist-text">
+              <h5 class="track-artist-name">- Who is Rupantor?</h5>
+              <p class="track-artist-bio">Donec venenatis turpis eu mauris tempor ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
             </div>
-            <hr/>
+            <div class="track-artist-logo"><img [src]="(artist.avatar) ? (service.public_url + artist.avatar) : '/assets/images/logo-rupantor-color.svg'" alt="rupantor"></div>
           </div>
         </div>
       </div>
     </main>
+
   </div>
 </div>
