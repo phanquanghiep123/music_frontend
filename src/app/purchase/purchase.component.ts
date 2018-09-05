@@ -36,7 +36,6 @@ export class PurchaseComponent implements OnInit {
   }
   ngOnInit() {
     $('body').attr('class', 'page-checkout');
-    
     const slug = this.checkoutInfo['slug'];
     this.artistService.first(slug).subscribe(data => {
       this.service = data;
@@ -54,10 +53,8 @@ export class PurchaseComponent implements OnInit {
         this.checkout.status = 1;
         this.checkout.set();
         this.titleService.setTitle('Confirm Purchase | ' + this.artist.name + ' | ' + this.track.name);
-      }
-      setTimeout(() => {
         this.app.hiddenLoading();
-      }, 500);
+      }
       this.app.showLogopayment = true;
     });
   }

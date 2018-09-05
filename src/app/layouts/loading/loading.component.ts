@@ -14,8 +14,10 @@ export class LoadingComponent implements OnInit {
   hiddenloadding() {
     if (this.loading == true) {
       this.loading = false;
-      $('.loading').fadeOut();
-      $("body .site").removeClass("open-loadding");
+      $('.loading').fadeOut("slow",function(){
+        $("body .site").removeClass("open-loadding");
+      });
+      
     }
   }
   showloadding() {

@@ -16,7 +16,8 @@
               <div class="track track-review">
                 <div class="track-cover-holder">
                   <div class="track-cover">
-                    <img *ngIf="track" [src]="(track.thumb) ? (service.public_url + track.thumb) : '/assets/images/thumb.jpg'" alt="thumb photo">
+                    <img *ngIf="track" [src]="(track.thumb) ? (service.public_url + track.thumb) : '/assets/images/thumb.jpg'"
+                      alt="thumb photo">
                   </div>
                 </div>
                 <div class="track-text flex-xs">
@@ -36,7 +37,8 @@
                   <span>Personal Details</span>
                 </div>
                 <div class="form-group form-group-js">
-                  <input [(ngModel)]="checkout.full_name" ngModel #full_name="ngModel" name="full_name" class="form-control" type="text" placeholder="Full Name" required autocomplete="false">
+                  <input [(ngModel)]="checkout.full_name" ngModel #full_name="ngModel" name="full_name" class="form-control"
+                    type="text" placeholder="Full Name" required autocomplete="false">
                   <p>
                     <span *ngIf="full_name.invalid && isSubmitCheckout == 1" class="error-messege">
                       <span *ngIf="full_name.errors.required" class="error">name is required.</span>
@@ -44,7 +46,8 @@
                   </p>
                 </div>
                 <div class="form-group form-group-js">
-                  <input [(ngModel)]="checkout.email" ngModel #email="ngModel" class="form-control" type="email" placeholder="Email Address" name="email" required email autocomplete="false">
+                  <input [(ngModel)]="checkout.email" ngModel #email="ngModel" class="form-control" type="email"
+                    placeholder="Email Address" name="email" required email autocomplete="false">
                   <p>
                     <span *ngIf="email.invalid && isSubmitCheckout == 1" class="error-messege">
                       <span *ngIf="email.errors.required" class="error">email is required.</span>
@@ -57,28 +60,31 @@
                 <div class="checkbox checkbox-default">
                   <input [(ngModel)]="checkout.agree" id="agree" type="checkbox" name="agree" checked="" required>
                   <label for="agree">
-                    Lorem ipsum
-                    <u>dolor</u> sit amet, consectetur adipiscing elit. Duis sit
-                    <u>amet porttitor</u> dui, vel molestie est.
+                    We <strong><u>DO NOT</u></strong> share your personal information like email
+                    address to anyone. I accept the terms and conditions.
+                    <strong><u>NO REFUNDS</u></strong> on digital downloads.
                   </label>
                 </div>
               </div>
               <p class="text-center">
-                <button type="submit" class="btn btn-primary checkoutbn" [disabled]="formCheckout.form.status != 'VALID'" >
-                  <span class="rmicon icon-music"></span><span class="btn-text"> Buy song {{checkout.price.icon}}{{checkout.price.price}}</span>
+                <button type="submit" class="btn btn-primary checkoutbn" [disabled]="formCheckout.form.status != 'VALID'">
+                  <span class="rmicon icon-music"></span><span class="btn-text"> Buy song
+                    {{checkout.price.icon}}{{checkout.price.price}}</span>
                 </button>
               </p>
             </form>
           </div>
         </div>
         <div class="track-artist flex-md align-items-end justify-content-end">
-            <div class="track-artist-inner">
-              <div class="track-artist-text">
-                <h5 class="track-artist-name">- Who is Rupantor?</h5>
-                <p class="track-artist-bio">Donec venenatis turpis eu mauris tempor ultricies. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
-              </div>
-              <div class="track-artist-logo"><img  [src]="(artist.avatar) ? (service.public_url + artist.avatar) : '/assets/images/thumb.jpg'" src="/asset/images/logo-rupantor.svg" alt="rupantor"></div>
+          <div class="track-artist-inner">
+            <div class="track-artist-text">
+              <h5 class="track-artist-name">- Who is Rupantor?</h5>
+              <p class="track-artist-bio">Donec venenatis turpis eu mauris tempor ultricies. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus</p>
             </div>
+            <div class="track-artist-logo"><img [src]="(artist.avatar) ? (service.public_url + artist.avatar) : '/assets/images/thumb.jpg'"
+                src="/asset/images/logo-rupantor.svg" alt="rupantor"></div>
+          </div>
         </div>
       </div>
     </main>

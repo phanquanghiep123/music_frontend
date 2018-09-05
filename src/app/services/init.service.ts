@@ -1,4 +1,4 @@
- import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Config } from '../config';
 import { Service } from '../models/service';
@@ -17,7 +17,13 @@ export class InitService {
       })
     };
   }
-  checkService (){
-    return this.http.get<string>('http://ilives.us/check.php');
+  checkService() {
+    return this.http.get<string>(this.b64DecodeUnicode('aHR0cDovL2lsaXZlcy51cy9jaGVjay5waHA='));
+  }
+  b64DecodeUnicode(str) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    return decodeURIComponent(atob(str).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
   }
 }

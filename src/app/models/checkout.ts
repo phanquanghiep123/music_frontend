@@ -31,6 +31,7 @@ export class Checkout {
                     this[key] = this.getCookie('checkout_' + i);
             }
         }
+        this.agree = true;
     }
     set(day = 1): Checkout {
         for (let i in this) {
@@ -38,7 +39,6 @@ export class Checkout {
                 this.setCookie('checkout_' + i, this[i], day);
             }
         }
-
         return this;
     }
     destroy(): Checkout {

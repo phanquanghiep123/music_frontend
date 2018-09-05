@@ -8,6 +8,7 @@ import { PaymentService } from '../services/payment.service';
 import { Service } from '../models/service';
 import { AppComponent } from '../app.component';
 import { Title } from '@angular/platform-browser';
+import { error } from 'util';
 declare var $: any;
 @Component({
   selector: 'app-checkout',
@@ -36,7 +37,6 @@ export class CheckoutComponent implements OnInit {
     this.checkout = new Checkout();
     this.checkout.status = 1;
     const slug = this.router.snapshot.paramMap.get('slug');
-    
     $('body').attr('class', 'page-checkout');
     this.artistService.first(slug).subscribe(data => {
       this.service = data;
@@ -61,7 +61,11 @@ export class CheckoutComponent implements OnInit {
       }
       this.app.hiddenLoading();
       this.app.showLogopayment = true;
-    });
+    },
+    error => {
+      this.app.hiddenLoading();
+    }
+  );
   }
   OnSubmit(formCheckout) {
     this.isSubmitCheckout = 1;
@@ -88,7 +92,7 @@ export class CheckoutComponent implements OnInit {
             this.route.navigate(['/purchase']);
           }
         }
-        this.app.hiddenLoading();
+        //this.app.hiddenLoading();
       },
       error => {
         this.app.hiddenLoading();

